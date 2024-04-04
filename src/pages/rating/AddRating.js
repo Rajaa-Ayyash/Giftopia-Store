@@ -1,7 +1,7 @@
 import { Input, Modal, Rate } from 'antd';
 import React, { useState } from 'react';
 
-export const Rating = () => {
+export const AddRating = () => {
 
   const [modal2Open, setModal2Open] = useState(true);
 
@@ -20,11 +20,11 @@ export const Rating = () => {
         onCancel={() => setModal2Open(false)}
       >
         <Input placeholder="Add comments here" maxLength={150} onChange={onCommentChange} />
-        <label>Rating</label>
+        <label>AddRating</label>
         <Rate style={{ paddingTop: '10px' }} allowHalf defaultValue={2.5} />
       </Modal>
     </div>
   )
 }
 
-export default Rating;
+export default AddRating;

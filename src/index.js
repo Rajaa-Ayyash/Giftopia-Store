@@ -14,7 +14,8 @@ import {
 
 
 import Home from './pages/home/Home.js';
-import Rating from './pages/rating/Rating.js';
+import AddRating from './pages/rating/AddRating.js';
+import ViewRating from './pages/rating/ViewRating.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -27,8 +28,12 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/rating",
-    element: <Rating/>
+    path: "/add-rating",
+    element: <AddRating/>
+  },
+  {
+    path: "/view-rating",
+    element: <ViewRating/>
   }
 ]);
 root.render(

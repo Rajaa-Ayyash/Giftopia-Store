@@ -1,0 +1,22 @@
+.buy-button{
+    height: 100%;
+    width: 30%;
+    padding:16px;
+    border: 2px solid #F5CAC3;
+    border-radius: 2px;
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+.buy-button div{
+    font-family: 'Public Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #F28482;
+}
+
+@media screen and (max-width: 500px) {
+    .buy-button {
+        padding:11px 0;
+    }
+}

@@ -1,0 +1,47 @@
+.description-review-container {
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+    border: 1px solid #E4E7E9; 
+}
+
+.buttons-container {
+    margin-top: 20px;
+}
+
+.buttons-container button {
+    color: #5F6C72;
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.buttons-container button.active {
+    color: #111111;
+    border-style: solid;
+    border-color: #F28482;
+    border-width: 0 0 4px 0 ;
+}
+
+.description {
+    border-top: 1px solid #E4E7E9; 
+    color:#5F6C72;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 18px;
+}
+.description-header{
+    margin: 20px;
+    font-size: 20px;
+    color: #111111;
+    font-weight: bold;
+}
+.description div{
+    margin: 20px;
+}

@@ -1,3 +1,6 @@
+.main-container{
+    background-color: #F5F5F5;
+}
 .product-page-nav-bar{
     display: flex;
     flex-direction: column;

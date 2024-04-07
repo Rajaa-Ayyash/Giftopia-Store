@@ -14,7 +14,7 @@ import {
 
 
 import Home from './pages/home/Home.js';
-import ViewRatings from './pages/rating/ViewRatings.js';
+import ViewRatings from './components/rating/ViewRatings.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([

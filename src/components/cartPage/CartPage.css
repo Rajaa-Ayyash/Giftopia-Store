@@ -1,0 +1,82 @@
+.product-cart {
+  background-color: whitesmoke;
+}
+
+.button-cart {
+  background-color: #f5cac3;
+  border: 0px;
+  border-radius: 8px;
+}
+
+.quantity-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quantity-input {
+  width: 50px;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.remove-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.quantity-and-remove-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-table th,
+.cart-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.cart-link {
+  text-decoration: none;
+  color: #000000;
+}
+
+.discount-code-container{
+  margin-bottom: 10px;
+}
+
+.Apply-discount-btn {
+  background-color: whitesmoke;
+  border-radius: 50px;
+  color: #f28482;
+  transition: all 0.3s ease;
+  margin-left: 5PX;
+}
+
+.Apply-discount-btn:hover {
+  background-color: #f28482;
+  border-radius: 5px;
+  color: white;
+}
+.discount-input{
+  color: #f28482;
+  border:2px solid #f28482;
+  padding: 10px 25px;
+  background-color: transparent;
+  border-radius: 15px;
+  max-width: 155px;
+}
+.discount-input:hover{
+box-shadow:2px 2px 15px #f28482 inset;
+}
+.product-cart {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+

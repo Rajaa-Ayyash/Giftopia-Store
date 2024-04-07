@@ -35,7 +35,7 @@ The 'Reducing CO2' footprint label applies to 65C2 only. All other C2 models fea
 UL ECV certification based on TV frame and back cover. Percentage of recycled content varies by model and size.`;
 
     return (
-        <div className="main-container">
+        <div className="container">
             <div className="product-page-nav-bar">
                 <h1 className="brand-name">Giftopia</h1>
             </div>

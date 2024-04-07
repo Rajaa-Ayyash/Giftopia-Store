@@ -141,7 +141,7 @@ function CartPage() {
   const totalWithShipping = totalPrice + shippingCost - discount; 
 
   return (
-    <div className="CartPage ">
+    <div className="CartPage mt-5 ">
       <div className="product-cart mt-10">
         <div className="container">
           <div className="row">

@@ -22,7 +22,7 @@ export default function ProductDetails(){
     const name ='LG C2 42 (106cm) 4K Smart OLED evo TV | WebOS | Cinema HDR';
     const rating=[4.7,21671];
     const stock = 10;
-    const availabilityClass = { color: stock > 0 ? 'green' : 'red'}
+    const availabilityClass = { fontWeight: 'bold', color: stock > 0 ? '#2DB224' : '#FF0A0A'}
     const company = 'LG';
     const price = {currentPrice: '1699', oldPrice: '1999' };
     const description =`The LG C2 42 (106cm) 4K Smart OLED evo TV is the best all-around OLED TV we've
@@ -33,7 +33,6 @@ Only 65G2 is shown in the image for example purposes. All 2022 LG OLED models fe
 65C2 Stand model is at a minimum 39% lighter than the C1 series.
 The 'Reducing CO2' footprint label applies to 65C2 only. All other C2 models feature a 'CO2 Measured' label.
 UL ECV certification based on TV frame and back cover. Percentage of recycled content varies by model and size.`;
-
 
     return (
         <div className="main-container">
@@ -53,7 +52,7 @@ UL ECV certification based on TV frame and back cover. Percentage of recycled co
                                 Available: <span style={availabilityClass}>{stock > 0 ? 'In Stock' : 'Not Available'}</span>
                             </p>
                             <p>
-                                Brand :<span> {company} </span>
+                                Brand :<span style={{fontWeight: 'bold' , color:"#111"}}> {company} </span>
                             </p>
                         </div>
                         <p className="product-content-price">

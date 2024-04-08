@@ -17,6 +17,7 @@ import Home from './pages/home/Home.js';
 import Dashboard from './dashboard/Dashboard.js';
 
 import CartShopping from './pages/cartShopping/CartShopping.js';
+import NewAdmin from './pages/addNewAdmin/NewAdmin.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path : "/cart",
     element : <CartShopping />
+  },
+  {
+    path: "/Admin",
+    element: <NewAdmin />
   }
 
 

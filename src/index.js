@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './general.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -14,7 +14,9 @@ import {
 
 
 import Home from './pages/home/Home.js';
-import ViewRatings from './components/rating/ViewRatings.js';
+
+
+import CartShopping from './pages/cartShopping/CartShopping.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -27,9 +29,10 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/view-rating",
-    element: <ViewRatings/>
+    path : "/cart",
+    element : <CartShopping />
   }
+
 ]);
 root.render(
   <React.StrictMode>

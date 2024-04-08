@@ -1,5 +1,6 @@
 /*side bar*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 /*search bar*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
@@ -14,7 +15,7 @@
 }
 .main_box{
   position: relative;
-  background: url("./AI5.jpg") no-repeat center;
+  background: url("./AIPageImg.jpg") no-repeat center;
   background-color: #ffffff;
 
   background-size: 10cm;

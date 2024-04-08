@@ -2,6 +2,7 @@ import { Divider, Flex, List, Rate, Skeleton } from 'antd';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import AddRating from './AddRating';
+import { ViewRatingWrapper } from './styled';
 
 
 export const ViewRatings = () => {
@@ -29,18 +30,11 @@ export const ViewRatings = () => {
     }, []);
 
     return (
-        <div style={{ padding: '4%' }}>
+        <div className='container'>
             <AddRating />
             <hr style={{ borderTop: 'dotted 2px' }} />
-            <div
-                id="scrollableDiv"
-                style={{
-                    height: 400,
-                    overflow: 'auto',
-                    padding: '0 16px',
-                    border: '1px solid rgba(140, 140, 140, 0.35)',
-                }}
-            >
+            <ViewRatingWrapper
+                id="scrollableDiv">
                 <InfiniteScroll
                     dataLength={data.length}
                     next={loadMoreData}
@@ -73,7 +67,7 @@ export const ViewRatings = () => {
                         )}
                     />
                 </InfiniteScroll>
-            </div>
+            </ViewRatingWrapper>
         </div>
 
     )

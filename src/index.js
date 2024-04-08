@@ -14,7 +14,7 @@ import {
 
 
 import Home from './pages/home/Home.js';
-
+import Dashboard from './dashboard/Dashboard.js';
 
 import CartShopping from './pages/cartShopping/CartShopping.js';
 
@@ -29,9 +29,14 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: "/dashboard",
+    element: <Dashboard/>
+  },
+  {
     path : "/cart",
     element : <CartShopping />
   }
+
 
 ]);
 root.render(

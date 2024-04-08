@@ -17,6 +17,7 @@ import Home from './pages/home/Home.js';
 import Dashboard from './dashboard/Dashboard.js';
 
 import CartShopping from './pages/cartShopping/CartShopping.js';
+import AddStaff from './pages/addNewStaff/AddStaff.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -36,7 +37,6 @@ const router = createBrowserRouter([
     path : "/cart",
     element : <CartShopping />
   }
-
 
 ]);
 root.render(

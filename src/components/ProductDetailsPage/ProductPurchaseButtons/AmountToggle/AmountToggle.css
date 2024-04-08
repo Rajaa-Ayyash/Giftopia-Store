@@ -1,0 +1,32 @@
+.amount-toggle{
+    height: 100%;
+    width: 30%;
+    padding:16px 0;
+    border: 2px solid #E4E7E9;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.decrease-button{
+    border: none;
+    background-color: transparent;
+}
+
+.amount-style{
+    font-family: 'Public Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.increase-button{
+    border: none;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 500px) {
+    .amount-toggle {
+        padding:11px 0;
+    }
+}

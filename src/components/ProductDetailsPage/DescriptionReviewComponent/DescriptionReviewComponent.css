@@ -45,3 +45,7 @@
 .description div{
     margin: 20px;
 }
+.content{
+    width: 100vw;
+    max-width: 80%;
+}

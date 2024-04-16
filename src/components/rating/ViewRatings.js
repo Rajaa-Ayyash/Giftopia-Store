@@ -61,10 +61,9 @@ export const ViewRatings = () => {
                         dataSource={data}
                         renderItem={(item) => (
                             <List.Item key={item.email}>
-                                <List.Item.Meta
-                                    title={item.name.last}
-                                    description={item.email}
-                                />
+                                <Flex>
+                                    {item.name.last}
+                                </Flex>
                                 <Flex gap="small" vertical>
                                     <div>Some comment here</div> {/*the comment should be comeing from backend  */}
                                     <Rate style={{ paddingTop: '10px', color: '#F5CAC3' }} allowHalf defaultValue={2.5} disabled />

@@ -14,6 +14,7 @@ import {
 
 
 import Home from './pages/home/Home.js';
+import ViewRating from './rating/ViewRating';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Home />,
   },
+  {
+    path: "/rating",
+    element: <ViewRating/>,
+  }
 ]);
 root.render(
   <React.StrictMode>

@@ -1,6 +1,6 @@
-import AmountToggle from "./AmountToggle/AmountToggle";
-import AddToCart from "./AddToCart/AddToCart";
-import Buy from "./Buy/Buy";
+import AmountToggle from "./amountToggle/AmountToggle";
+import AddToCart from "./addToCart/AddToCart";
+import Buy from "./buy/Buy";
 import React, { useState } from "react";
 import "./ProductPurchaseButtons.css";
 

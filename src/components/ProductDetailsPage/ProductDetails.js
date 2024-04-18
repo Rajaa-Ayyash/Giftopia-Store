@@ -1,10 +1,10 @@
 import React from "react";
 import "./ProductDetails.css"
-import ProductImages from "./ProductImages/ProductImages";
-import ProductRating from "./ProductRating/ProductRating";
-import ProductPrice from "./ProductPrice/ProductPrice";
-import DescriptionReviewComponent from "./DescriptionReviewComponent/DescriptionReviewComponent";
-import ProductPurchaseButtons from "./ProductPurchaseButtons/ProductPurchaseButtons";
+import ProductImages from "./productImages/ProductImages";
+import ProductRating from "./productRating/ProductRating";
+import ProductPrice from "./productPrice/ProductPrice";
+import DescriptionReviewComponent from "./descriptionReviewComponent/DescriptionReviewComponent";
+import ProductPurchaseButtons from "./productPurchaseButtons/ProductPurchaseButtons";
 
 export default function ProductDetails(){
     const images = [

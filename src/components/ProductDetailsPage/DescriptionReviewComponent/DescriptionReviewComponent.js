@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DescriptionReviewComponent.css';
-
+//import ViewRatings from '../../rating/ViewRatings'
 export default function DescriptionReviewComponent ({description , reviews}) {
     const [activeTab, setActiveTab] = useState('description');
 
@@ -21,7 +21,9 @@ export default function DescriptionReviewComponent ({description , reviews}) {
                     <div>{description}</div>
                 </div>}
 
-                {activeTab === 'reviews' && <div className='reviews'>
+                {activeTab === 'reviews' &&
+                // <ViewRatings/>
+                 <div className='reviews'>
                     <h3 className='reviews-header'>Reviews</h3>
                     <div>{reviews}</div>
                 </div>}

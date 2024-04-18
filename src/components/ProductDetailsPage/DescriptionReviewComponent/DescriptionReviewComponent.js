@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import './DescriptionReviewComponent.css';
-<<<<<<< HEAD
-//import ViewRatings from '../../rating/ViewRatings'
-=======
 import ViewRatings from '../../rating/ViewRatings'
->>>>>>> b1c2870248ad3bb7b646319cc5b88be21101cb55
 export default function DescriptionReviewComponent ({description , reviews}) {
     const [activeTab, setActiveTab] = useState('description');
 
@@ -24,17 +20,7 @@ export default function DescriptionReviewComponent ({description , reviews}) {
                     <h3 className='description-header'>Description</h3>
                     <div>{description}</div>
                 </div>}
-
-<<<<<<< HEAD
-                {activeTab === 'reviews' &&
-                // <ViewRatings/>
-                 <div className='reviews'>
-                    <h3 className='reviews-header'>Reviews</h3>
-                    <div>{reviews}</div>
-                </div>}
-=======
                 {activeTab === 'reviews' && <ViewRatings/>}
->>>>>>> b1c2870248ad3bb7b646319cc5b88be21101cb55
             </div>
         </div>
     );

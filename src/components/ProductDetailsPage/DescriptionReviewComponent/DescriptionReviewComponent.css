@@ -45,25 +45,7 @@
 .description div{
     margin: 20px;
 }
-<<<<<<< HEAD
-
-.reviews-header{
-    margin: 20px;
-    font-size: 20px;
-    color: #111111;
-    font-weight: bold;
-}
-.reviews div{
-    width: 70%;
-    margin: 20px;
-}
 .content{
     width: 100vw;
     max-width: 80%;
 }
-=======
-.content{
-    width: 100vw;
-    max-width: 80%;
-}
->>>>>>> b1c2870248ad3bb7b646319cc5b88be21101cb55

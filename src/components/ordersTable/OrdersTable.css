@@ -54,12 +54,24 @@
     border-radius: 6px;
 }
 
-.acidic-icon{
+.ascending-icon{
     padding: 10px 5px 10px 10px;
 }
-.deciding-icon{
+.ascending-icon button{
+    padding: 0;
+    border:none;
+    background-color:#F9FAFB ;
+}
+
+.descending-icon{
     padding: 10px 10px 10px 5px;
 }
+.descending-icon button{
+    padding: 0;
+    border:none;
+    background-color:#F9FAFB ;
+}
+
 .table{
     margin-top: 24px;
 }

@@ -132,11 +132,11 @@ export default function OrdersTable (){
             </div>
             <div className="Sort" >
               <Dropdown selected={selectedSortBy} setSelected={setSortSearchBy} />
-              <div className="acidic-icon">
-                <TiArrowSortedUp />
+              <div className="ascending-icon">
+                <button><TiArrowSortedUp /></button>
               </div>
-              <div className="deciding-icon">
-                <TiArrowSortedDown />
+              <div className="descending-icon">
+                <button><TiArrowSortedDown /></button>
               </div>
             </div>
           </div>

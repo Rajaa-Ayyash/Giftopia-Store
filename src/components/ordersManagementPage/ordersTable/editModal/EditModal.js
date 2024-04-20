@@ -5,6 +5,7 @@ export default function Modal ({closeEditModal , defaultValue , onSubmit}){
     const [formState, setFormState] = useState (defaultValue ||{
         orderID: "",
         productNumber: "",
+        productTitle: "",
         status: "Processing",
         price: "",
         customerName: "",
@@ -36,6 +37,10 @@ export default function Modal ({closeEditModal , defaultValue , onSubmit}){
               <input name="productNumber" onChange={handleChange} value={formState.productNumber} />
             </div>
             <div className="form-group">
+              <label htmlFor="productTitle">Product Title</label>
+              <input name="productTitle" onChange={handleChange} value={formState.productTitle} />
+            </div>
+            <div className="form-group">
               <label htmlFor="status">Status</label>
               <select name="status" onChange={handleChange} value={formState.status}>
                 <option value="Processing">Processing</option>
@@ -53,6 +58,10 @@ export default function Modal ({closeEditModal , defaultValue , onSubmit}){
             <div className="form-group">
               <label htmlFor="customerName">Customer Name</label>
               <input name="customerName" onChange={handleChange} value={formState.customerName} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="customerEmail">Customer Email</label>
+              <input name="customerEmail" onChange={handleChange} value={formState.customerEmail} />
             </div>
             <div className="form-group">
               <label htmlFor="location">Location</label>

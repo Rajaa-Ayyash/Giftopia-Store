@@ -1,0 +1,12 @@
+.all-buttons{
+    max-height: 56px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap:1em;
+}
+@media screen and (max-width: 748px) {
+    .all-buttons{
+        gap: 0.5em;;
+    }
+}

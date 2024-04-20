@@ -1,7 +1,7 @@
 import './Intro.css';
 
 
-const intro =() => {
+const Intro =() => {
 
     return (
     
@@ -19,4 +19,4 @@ const intro =() => {
 };
 
 
-export default intro;
+export default Intro;

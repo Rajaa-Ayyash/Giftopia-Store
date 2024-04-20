@@ -9,7 +9,7 @@ export default function ProductImages ({ images }) {
       <div className="sub-images">
         {images.map((curElm, index) => {
           return (
-            <figure className="product-image-figure">
+            <figure key={index} className="product-image-figure">
               <img className="product-image"
                 src={curElm.url}
                 alt={curElm.filename}

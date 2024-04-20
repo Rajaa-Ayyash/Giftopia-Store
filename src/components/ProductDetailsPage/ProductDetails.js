@@ -43,16 +43,16 @@ UL ECV certification based on TV frame and back cover. Percentage of recycled co
                         <ProductRating rating={rating[0]} feedbacksNumber={rating[1]} />
                         <div className="product-title">{name}</div>
                         <div className="product-content-info">
-                            <p>
+                            <div>
                                 Available: <span style={availabilityClass}>{stock > 0 ? 'In Stock' : 'Not Available'}</span>
-                            </p>
-                            <p>
+                            </div>
+                            <div>
                                 Brand :<span style={{fontWeight: 'bold' , color:"#111"}}> {company} </span>
-                            </p>
+                            </div>
                         </div>
-                        <p className="product-content-price">
+                        <div className="product-content-price">
                             <ProductPrice currentPrice={price.currentPrice} oldPrice={price.oldPrice}/>
-                        </p>
+                        </div>
                         <ProductPurchaseButtons stock={stock}/>
                     </div>
                 </div>

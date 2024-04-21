@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EditModal.css";
 
-export default function Modal ({closeEditModal , defaultValue , onSubmit}){
+export default function EditModal ({closeEditModal , defaultValue , onSubmit}){
     const [formState, setFormState] = useState (defaultValue ||{
         orderID: "",
         productNumber: "",

@@ -51,7 +51,7 @@ const Footer = () => {
                                 <div class="footer-widget">
                                     <div class="footer-logo">
                                         <img
-                                            src={require('../footer/footerLogo/10.JPG')}
+                                            src={require('../footer/footerLogo/logo.JPG')}
                                             alt="Lakeview Elegance preview"
                                         ></img>
                                     </div>

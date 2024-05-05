@@ -1,0 +1,58 @@
+.add-new-modal-container {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-new-modal {
+    border-radius: 5px;
+    padding: 2rem;
+    background-color: white;
+    width: 25em;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .form-group label{
+    color: #6B7280;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    color: #6B7280;
+    border: 1px solid #dddddd;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+  }
+
+.add-new-modal .save-button {
+    display: block;
+    margin: 10px auto auto auto ;
+}
+
+.save-button {
+    padding: 0px 10px;
+    font-weight: 500;
+    border: 2px solid #00B140;
+    border-radius: 6px;
+    background-color: white;
+    color: #00B140;
+}
+.save-button:hover {
+    border: 1px solid #00B140;
+    border-radius: 6px;
+    background-color: #00B140;
+    color: white;
+}

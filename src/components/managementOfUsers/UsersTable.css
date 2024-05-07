@@ -180,7 +180,7 @@
     background-color:#dddddd;
     border-radius: 5px;
 }
-.addAdmin-button{
+.adduser-button{
     width: auto;
     margin-top: 10px;
     font-size: 20px;
@@ -189,7 +189,7 @@
     background-color: #fff;
    
 }
-.addAdmin-button:hover{
+.adduser-button:hover{
     background-color:#dddddd;
     border-radius: 5px;
 }

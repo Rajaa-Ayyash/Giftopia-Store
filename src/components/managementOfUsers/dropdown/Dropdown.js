@@ -4,7 +4,7 @@ import { FaChevronDown ,FaChevronUp} from 'react-icons/fa';
 
 export default function Dropdown({selected , setSelected}){
     const [isActive, setIsActive] = useState(false)
-     const options = ['Admin ID',  'Admin Name', 'Admin Email' , 'Location' ]
+     const options = ['User ID',  'User Name', 'User Email' , 'Location' ]
     return (
       <div className="dropdown">
         <div className="dropdown-button" onClick={(e) => setIsActive(!isActive)}> {selected}

@@ -14,6 +14,7 @@ import {
 
 
 import Home from './pages/home/Home.js';
+import UsersManagementPage from './pages/UsersManagementPage/UsersManagementPage.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Home />,
   },
+  {
+    path:"/users",
+    element:<UsersManagementPage/>
+  }
 
 ]);
 root.render(

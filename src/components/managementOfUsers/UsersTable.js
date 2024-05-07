@@ -1,85 +1,92 @@
 import React, { useState } from 'react';
-import "./AdministratorsTable.css"
+import "./UsersTable.css"
 import Dropdown from "./dropdown/Dropdown.js";
 import EditModal from "./editModal/EditModal.js";
-import {  FaSearch,FaTrash ,FaExternalLinkAlt,FaTimes } from 'react-icons/fa';
+import {  FaSearch,FaTrash ,FaTimes } from 'react-icons/fa';
 import { TfiPlus } from "react-icons/tfi";
 import { RiEdit2Line } from 'react-icons/ri';
 
 
-export default function AdminTable (){
+export default function UsersTable (){
   const [rows, setRows]= useState([
     {
-      adminID: "1",
-      adminName: "Cody Fisher",
-      adminEmail:"jane.smith@example.com",
+      userID: "1",
+      userName: "Cody Fisher",
+      userEmail:"jane.smith@example.com",
+      password:'1234',
       location: "Mystic Springs, Arcadia, Wonderland"
 
     },
     {
-      adminID: "2",
-      adminName: "Ali ismail",
-      adminEmail:"test.user@example.com",
+      userID: "2",
+      userName: "Ali ismail",
+      userEmail:"test.user@example.com",
+      password:'qw',
       location: "Whispering Pines, Arcadia, Wonderland"
     },
     {
-      adminID: "3",
-      adminName: "Ahmad Fisher",
-      adminEmail:"random.person@example.com",
+      userID: "3",
+      userName: "Ahmad Fisher",
+      userEmail:"random.person@example.com",
+      password:'098',
       location: "Celestial Harbor, Arcadia, Wonderland"
     },
     {
-      adminID: "4",
-      adminName: "Mohammed Ali",
-      adminEmail:"fake.email@example.com",
+      userID: "4",
+      userName: "Mohammed Ali",
+      userEmail:"fake.email@example.com",
+      password:'mohammed',
       location: "Ember Peak, Arcadia, Wonderland"
     },
     {
-      adminID: "5",
-      adminName: "Cody Fisher",
-      adminEmail:"sample.address@example.com",
+      userID: "5",
+      userName: "Cody Fisher",
+      userEmail:"sample.address@example.com",
+      password:'09876',
       location: "Sapphire Valley, Arcadia, Wonderland"
     },
     {
-      adminID: "6",
-      adminName: "Cody Fisher",
-      adminEmail:"placeholder.email@example.com",
+      userID: "6",
+      userName: "Cody Fisher",
+      userEmail:"placeholder.email@example.com",
+      password:'546',
       location: "Eternal Glade, Arcadia, Wonderland"
     },
     {
-      adminID: "7",
-      adminName: "Cody Fisher",
-      adminEmail:"john.doe@example.com",
+      userID: "7",
+      userName: "Cody Fisher",
+      userEmail:"john.doe@example.com",
+      password:"3459",
       location: "Mystic Springs, Arcadia, Wonderland"
     },
   ])
-  const [selectedSearchBy,setSelectedSearchBy] = useState("Admin ID")
+  const [selectedSearchBy,setSelectedSearchBy] = useState("User ID")
   const [open,setOpen] = useState(false)
-  const [rowToEditadminID, setRowToEditadminID] = useState(0);
+  const [rowToEdituserID, setRowToEdituserID] = useState(0);
   const [search,setSearch]= useState('')
 
 
 
   function handleDeleteRow (targetIndex){
-    setRows(rows.filter(row => row.adminID !== targetIndex));
+    setRows(rows.filter(row => row.userID !== targetIndex));
   }
 
   function handleEditRow(targetIndex){
-    setRowToEditadminID(targetIndex);
+    setRowToEdituserID(targetIndex);
     setOpen(true);
   }
 
-  function handlAddAdmin(targetIndex){
-    setRowToEditadminID(targetIndex);
+  function handlAdduser(targetIndex){
+    setRowToEdituserID(targetIndex);
     setOpen(true);
   }
 
   function handleSubmit (newRow) {
-    rowToEditadminID === null
+    rowToEdituserID === null
       ? setRows([...rows, newRow])
       : setRows(
           rows.map((currRow) => {
-            if (currRow.adminID !== rowToEditadminID) return currRow;
+            if (currRow.userID !== rowToEdituserID) return currRow;
             return newRow;
           })
         );
@@ -88,28 +95,28 @@ export default function AdminTable (){
   function handleSearchType(item){
     switch(selectedSearchBy){
       
-      case 'Admin ID':
-        return search.toLowerCase() === '' ? item : item.adminID.toLowerCase().includes(search);;
+      case 'user ID':
+        return search.toLowerCase() === '' ? item : item.userID.toLowerCase().includes(search);;
         break;
       
-      case 'Admin Name':
-        return search.toLowerCase() === '' ? item : item.adminName.toLowerCase().includes(search);;
+      case 'user Name':
+        return search.toLowerCase() === '' ? item : item.userName.toLowerCase().includes(search);;
         break;
-      case 'Admin Email':
-        return search.toLowerCase() === '' ? item : item.adminEmail.toLowerCase().includes(search);;
+      case 'user Email':
+        return search.toLowerCase() === '' ? item : item.userEmail.toLowerCase().includes(search);;
         break;
       case 'Location':
         return search.toLowerCase() === '' ? item : item.location.toLowerCase().includes(search);;
         break;
       default:
-        return search.toLowerCase() === '' ? item : item.adminID.toLowerCase().includes(search);;
+        return search.toLowerCase() === '' ? item : item.userID.toLowerCase().includes(search);;
     }
   }
 
     return (
       <div className="body">
         <div className="head">
-            <div className="title">Administrators</div>
+            <div className="title">Users</div>
             <div className="search-field">
                 <Dropdown selected={selectedSearchBy} setSelected={setSelectedSearchBy} />
                 <div className="search-input">
@@ -118,16 +125,17 @@ export default function AdminTable (){
                 </div>
                 <div className='search-icon'><FaSearch /></div>
             </div>
-            <button type="button" className="addAdmin-button" onClick={()=>handlAddAdmin()}><TfiPlus /></button>
+            <button type="button" className="adduser-button" onClick={()=>handlAdduser()}><TfiPlus /></button>
         </div>
         <div className="table">
           <table className="ordersTable">
             <thead>
               <tr>
                
-                <th className="columnHeader">ADMIN ID</th>
-                <th className="columnHeader">ADMIN NAME</th>
-                <th className="columnHeader">ADMIN EMAIL</th>
+                <th className="columnHeader">USER ID</th>
+                <th className="columnHeader">USER NAME</th>
+                <th className="columnHeader">USER EMAIL</th>
+                <th className="columnHeader">PASSWORD</th>
                 <th className="columnHeader">LOCATION</th>
                 <th className="columnHeader">EDIT</th>
                 <th className="columnHeader">DELETE</th>
@@ -138,17 +146,18 @@ export default function AdminTable (){
                 return handleSearchType(item);
               }).map((row) => {
                 return (
-                  <tr key={row.adminID}>
-                    <td>{row.adminID}</td>
-                    <td>{row.adminName}</td>
-                    <td>{row.adminEmail}</td>
+                  <tr key={row.userID}>
+                    <td>{row.userID}</td>
+                    <td>{row.userName}</td>
+                    <td>{row.userEmail}</td>
+                    <td>{row.password}</td>
                     <td>{row.location}</td>
                     
                     <td>
-                      <button className='edit-button' onClick={()=>(handleEditRow(row.adminID))}><RiEdit2Line/></button>
+                      <button className='edit-button' onClick={()=>(handleEditRow(row.userID))}><RiEdit2Line/></button>
                     </td>
                     <td>
-                      <button className='delete-button' onClick={()=>handleDeleteRow(row.adminID)}><FaTrash/></button>
+                      <button className='delete-button' onClick={()=>handleDeleteRow(row.userID)}><FaTrash/></button>
                     </td>
                   </tr>
                 );
@@ -156,7 +165,7 @@ export default function AdminTable (){
             </tbody>
           </table>
         </div>
-          { open && <EditModal closeEditModal={()=>(setOpen(false))} defaultValue={rowToEditadminID !== null && rows.find(row => row.adminID === rowToEditadminID)} onSubmit={handleSubmit} /> }
+          { open && <EditModal closeEditModal={()=>(setOpen(false))} defaultValue={rowToEdituserID !== null && rows.find(row => row.userID === rowToEdituserID)} onSubmit={handleSubmit} /> }
       </div>
     );
 }

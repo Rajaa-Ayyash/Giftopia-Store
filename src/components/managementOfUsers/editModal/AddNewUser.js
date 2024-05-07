@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./EditModal.css";
 
-export default function EditModal ({closeEditModal , defaultValue , onSubmit}){
+export default function AddNuser ({closeAddNuser , defaultValue , onSubmit}){
     const [formState, setFormState] = useState (defaultValue ||{
-        adminID: "",
-        adminName: "",
-        adminEmail:"",
+        userID: "",
+        userName: "",
+        userEmail:"",
         location: ""
   
     })
@@ -17,30 +17,34 @@ export default function EditModal ({closeEditModal , defaultValue , onSubmit}){
     function handleSubmit (e) {
         e.preventDefault();
         onSubmit(formState);
-        closeEditModal();
+        closeAddNuser();
     };
 
     return (
-      <div className="edit-modal-container" onClick={(e)=>{if(e.target.className ==='edit-modal-container') closeEditModal()}}>
+      <div className="edit-modal-container" onClick={(e)=>{if(e.target.className ==='edit-modal-container') closeAddNuser()}}>
         <div className="edit-modal">
           <form>
           
             <div className="form-group">
-              <label htmlFor="adminID">Admin ID</label>
-              <input name="adminID" onChange={handleChange} value={formState.adminID} />
+              <label htmlFor="userID">User ID</label>
+              <input name="userID" onChange={handleChange} value={formState.userID} />
             </div>
            
             <div className="form-group">
-              <label htmlFor="adminName">Admin Name</label>
-              <input name="adminName" onChange={handleChange} value={formState.adminName} />
+              <label htmlFor="userName">User Name</label>
+              <input name="userName" onChange={handleChange} value={formState.userName} />
             </div>
             <div className="form-group">
-              <label htmlFor="adminEmail">Admin Email</label>
-              <input name="adminEmail" onChange={handleChange} value={formState.adminEmail} />
+              <label htmlFor="userEmail">User Email</label>
+              <input name="userEmail" onChange={handleChange} value={formState.userEmail} />
             </div>
             <div className="form-group">
               <label htmlFor="location">Location</label>
               <input name="location"  onChange={handleChange} value={formState.location}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="Password">Password</label>
+              <input name="location"  onChange={handleChange} value={formState.Password}/>
             </div>
             
           

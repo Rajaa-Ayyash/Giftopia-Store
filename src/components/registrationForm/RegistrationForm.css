@@ -47,6 +47,14 @@
   max-width:48%;
 }
 
+.age-gender-section-registration-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.age-gender-section-registration-form div{
+  max-width:48%;
+}
 
 .validate-password-button{
   background-color: transparent;
@@ -109,4 +117,8 @@
     border-radius: 6px;
     background-color: transparent;
     color: #F28482;
+}
+
+.gender-dropdown{
+  width: 160px;
 }

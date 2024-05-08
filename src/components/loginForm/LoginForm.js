@@ -1,16 +1,17 @@
 import React,{useState} from "react";
 import './LoginForm.css'
+import axios from 'axios';
+
 export default function LoginForm (){
     const[passwordVisible,setPasswordVisible]=useState(false);
     function passwordToggleVisibility(){
       setPasswordVisible(prevVisible => !prevVisible);
     };
 
-    const FakeEmails = {
-        "user1@example.com": "Password1!",
-        "user2@example.com": "SecurePass2#",
-        "user3@example.com": "StrongPwd3$"
-    };
+    const user ={
+      email: '',
+      password: '',
+  }
     
     function handleEmailChange() {
         const inputValue = document.getElementById("email").value;
@@ -26,6 +27,7 @@ export default function LoginForm (){
             document.getElementById("email").value = "";
           } else {
             errorDisplayArea.innerHTML = ``;
+            
             handleEmailValidation(inputValue);
           }
         } else {
@@ -37,32 +39,56 @@ export default function LoginForm (){
         const emailErrorDisplayArea = document.querySelector(
             ".validate-email-display-error-section"
           );
-        if(FakeEmails.hasOwnProperty(email)){
-            const inputValue = document.getElementById("password").value;
-            const passwordErrorDisplayArea = document.querySelector(
-                ".validate-password-display-error-section"
-              );
-            
-            if(inputValue === FakeEmails[email]){
-                //console.log('Pass')
-                emailErrorDisplayArea.innerHTML = '';
-                passwordErrorDisplayArea.innerHTML = '';
-                
-            }else{
-                passwordErrorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">password is in valid</div>`;
-                document.getElementById("password").value = "";
-            }
-        }else{
-            emailErrorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">email is not registered</div>`;
-            document.getElementById("email").value = "";
+          const passwordErrorDisplayArea = document.querySelector(
+            ".validate-password-display-error-section"
+          );  
+          const inputValue = document.getElementById("password").value;
+          if(inputValue !== ""){
+            user.email = email;
+            user.password = inputValue;
+            posting();
+          }
+          else{
+            passwordErrorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">password can't be empty</div>`;
             document.getElementById("password").value = "";
-        }   
+          }
       }
 
     function handleSubmit (e) {
         e.preventDefault();
         handleEmailChange();
     };
+
+    async function posting(){
+      try {
+        const response = await axios.post('http://localhost:6060/auth/signIn', user);
+        const emailErrorDisplayArea = document.querySelector(
+          ".validate-email-display-error-section"
+        );
+        const passwordErrorDisplayArea = document.querySelector(
+          ".validate-password-display-error-section"
+        );
+        switch(response.data.message) {
+          case 'Invalid password':
+            passwordErrorDisplayArea.innerHTML = `<div style="color:red; font-size: small; font-weight: bold;">Password is in valid</div>`;
+            break;
+          case 'Invalid user':
+            emailErrorDisplayArea.innerHTML = `<div style="color:red; font-size: small; font-weight: bold;">Invalid user email</div>`;
+            passwordErrorDisplayArea.innerHTML = "";
+            document.getElementById("password").value = "";
+            break;
+          case "success":
+            emailErrorDisplayArea.innerHTML = `<div style="color:green; font-size: small; font-weight: bold;">Success</div>`;
+            passwordErrorDisplayArea.innerHTML = "";
+            break;
+          default:
+            console.error('Unexpected response status:', response.status);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     return(
         <div className="registration-form-container">
         <div className="registration-form">

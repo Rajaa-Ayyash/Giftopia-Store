@@ -1,26 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./CategoriesTable.css"
 import Dropdown from "./dropdown/Dropdown.js";
-import EditModal from "./editModal/EditModal.js";
 import AddNewModal from "./addNewModal/AddNewModal.js";
 import {  FaSearch,FaTrash,FaTimes } from 'react-icons/fa';
-import { RiEdit2Line } from 'react-icons/ri';
-
+import axios from 'axios';
 
 export default function CategoriesTable(){
   const [rows, setRows]= useState([
-    {
-        categoryName: "Tech Gadgets",
-    },
-    {
-        categoryName: "Beauty & Wellness",
-    },
-    {
-        categoryName: "Travel Essentials",
-    },
-    {
-        categoryName: "Games & Puzzles",
-    },
     {
         categoryName: "For Kids",
     },
@@ -32,60 +18,74 @@ export default function CategoriesTable(){
     },
   ])
   const [selectedSearchBy,setSelectedSearchBy] = useState("Category Name")
-  const [rowToEditCategoryName, setRowToEditCategoryName] = useState(0);
   const [search,setSearch]= useState('')
-
-  const [openEditModal,setOpenEditModal] = useState(false)
   const [openAddNewModal, setOpenAddNewModal] = useState(false);
 
+  const authToken = 'Giftopia__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2Q2ZTE0YzAxNTQxMzM5YjFhYWI5ZSIsImVtYWlsIjoiYWxhd25haC5tb29oYW1hZEBnbWFpbC5jb20iLCJpYXQiOjE3MTU0NTQ4MDV9.8uHVog7zHykMjW_5pzU_88Xx_hC_QPdAKmDROo45ZaA';
 
-  function handleDeleteRow (categoryName){
-    setRows(rows.filter(row  => row.categoryName !== categoryName));
-  }
-
-  function handleEditRow(name){
-    setRowToEditCategoryName(name);
-    setOpenEditModal(true);
-  }
-
-  function handleEditRowSubmit (newRow) {
-    if(newRow.categoryName){
-      if(rows.some(row => row.categoryName.toLowerCase() === newRow.categoryName.toLowerCase())){
-        alert("There is already a category with this name.");
-      }
-      else{
-        setRows(
-          rows.map((currRow) => {
-            if (currRow.categoryName !== rowToEditCategoryName) return currRow;
-            return newRow;
-          })
-        );
-      }
-    }else{
-      setRows([...rows, newRow])
-    }
-  };
-
-  function handleSearchType(item){
-    return search.toLowerCase() === '' ? item : item.categoryName.toLowerCase().includes(search);
-  }
+  async function handleDeleteRow (categoryName){
+    try {
+      await axios.delete('http://localhost:6060/category/deleteCategory', {
+        headers: {
+          Authorization: authToken
+        },
+        data:{
+          name:categoryName
+        }
+      });
+      getCategories();
+    } catch (error) {
+      console.log(error);
+    }  }
+  function handleSearchType(row){
+    return search.toLowerCase() === '' ? row : row.name.toLowerCase().includes(search);  }
 
   function handleAddNewCategory() {
     setOpenAddNewModal(true);
   }
 
-  function handleAddNewCategorySubmit(categoryName){
-    if(categoryName !== " "){
-      if(rows.some(row => row.categoryName.toLowerCase() === categoryName.toLowerCase())){
-        alert("There is already a category with this name.");
-      }
-      else{
-        setRows([...rows, { categoryName }]);
-      }
+  async function handleAddNewCategorySubmit(categoryName){
+    if(categoryName){
+      try {
+        const response = await axios.post('http://localhost:6060/category/addNewCategory', {
+          headers: {
+            Authorization: authToken
+          },
+          data:{
+            name:categoryName
+          }
+      });
+        if(response.data.message !== "category already exists"){
+          getCategories();
+        }
+        else{
+          alert("There is already a category with this name.");
+        }
+      } catch (error) {
+        console.log(error);
+      }  
     }else{
       alert("Add new category name.");
     }
   }
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  async function getCategories(){
+    try {
+      const response = await axios.get('http://localhost:6060/category/displayAllCategories', {
+        headers: {
+          Authorization: authToken
+        }
+      });
+      setRows(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
     return (
       <div className="body">
@@ -110,22 +110,18 @@ export default function CategoriesTable(){
             <thead>
               <tr>
                 <th className="columnHeader">Category Name</th>
-                <th className="columnHeader">EDIT</th>
                 <th className="columnHeader">DELETE</th>
               </tr>
             </thead>
             <tbody>
-              {rows.filter((item)=>{
-                return handleSearchType(item);
+              {rows.filter((row)=>{
+                return handleSearchType(row);
               }).map((row) => {
                 return (
-                  <tr key={row.categoryName}>
-                    <td>{row.categoryName}</td>
+                  <tr key={row.name}>
+                    <td>{row.name}</td>
                     <td>
-                      <button className='edit-button' onClick={()=>(handleEditRow(row.categoryName))}><RiEdit2Line/></button>
-                    </td>
-                    <td>
-                      <button className='delete-button' onClick={()=>handleDeleteRow(row.categoryName)}><FaTrash/></button>
+                      <button className='delete-button' onClick={()=>handleDeleteRow(row.name)}><FaTrash/></button>
                     </td>
                   </tr>
                 );
@@ -134,7 +130,6 @@ export default function CategoriesTable(){
           </table>
         </div>
           {openAddNewModal && <AddNewModal closeAddNewModal={() => setOpenAddNewModal(false)} onSubmit={handleAddNewCategorySubmit} />}
-          {openEditModal && <EditModal closeEditModal={()=>(setOpenEditModal(false))} defaultValue={setRowToEditCategoryName !== null && rows.find(row=> row.categoryName === rowToEditCategoryName )} onSubmit={handleEditRowSubmit} /> }
       </div>
     );
 }

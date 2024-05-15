@@ -6,17 +6,7 @@ import {  FaSearch,FaTrash,FaTimes } from 'react-icons/fa';
 import axios from 'axios';
 
 export default function CategoriesTable(){
-  const [rows, setRows]= useState([
-    {
-        categoryName: "For Kids",
-    },
-    {
-        categoryName: "For Him",
-    },
-    {
-        categoryName: "For Her",
-    },
-  ])
+  const [rows, setRows]= useState([])
   const [selectedSearchBy,setSelectedSearchBy] = useState("Category Name")
   const [search,setSearch]= useState('')
   const [openAddNewModal, setOpenAddNewModal] = useState(false);
@@ -35,39 +25,42 @@ export default function CategoriesTable(){
       });
       getCategories();
     } catch (error) {
-      console.log(error);
-    }  }
+      alert(error.response.data.message);
+    }
+  }
+
   function handleSearchType(row){
-    return search.toLowerCase() === '' ? row : row.name.toLowerCase().includes(search);  }
+    return search.toLowerCase() === '' ? row : row.name.toLowerCase().includes(search); 
+  }
 
   function handleAddNewCategory() {
     setOpenAddNewModal(true);
   }
 
   async function handleAddNewCategorySubmit(categoryName){
-    if(categoryName){
-      try {
-        const response = await axios.post('http://localhost:6060/category/addNewCategory', {
-          headers: {
-            Authorization: authToken
-          },
-          data:{
-            name:categoryName
+  
+      if(categoryName){
+        try {
+          const response = await axios.post('http://localhost:6060/category/addNewCategory', {
+            name: categoryName
+          }, {
+            headers: {
+              Authorization: authToken
+            }
+          });
+          if(response.data.message !== "category already exists"){
+            getCategories();
           }
-      });
-        if(response.data.message !== "category already exists"){
-          getCategories();
-        }
-        else{
-          alert("There is already a category with this name.");
-        }
-      } catch (error) {
-        console.log(error);
-      }  
-    }else{
-      alert("Add new category name.");
-    }
-  }
+          else{
+            alert("There is already a category with this name.");
+          }
+        } catch (error) {
+          alert(error.response.data.message);
+        }  
+      }else{
+        alert("Add new category name.");
+      }
+}
 
   useEffect(() => {
     getCategories();
@@ -82,7 +75,7 @@ export default function CategoriesTable(){
       });
       setRows(response.data)
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 

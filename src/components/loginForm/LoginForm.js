@@ -1,139 +1,138 @@
-import React,{useState} from "react";
-import './LoginForm.css'
+import React, { useState } from "react";
+import './LoginForm.css';
 import axios from 'axios';
+import Cookie from 'cookie-universal'
+import { redirect } from "react-router-dom";
 
-export default function LoginForm (){
-    const [errorBack,setErrorBack]=useState('')
-    const[passwordVisible,setPasswordVisible]=useState(false);
-    function passwordToggleVisibility(){
-      setPasswordVisible(prevVisible => !prevVisible);
-    };
+export default function LoginForm() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [generalError, setGeneralError] = useState('');
 
-    const user ={
-      email: '',
-      password: '',
-  }
-    
-    function handleEmailChange() {
-        const inputValue = document.getElementById("email").value;
-        const errorDisplayArea = document.querySelector(
-          ".validate-email-display-error-section"
-        );
-        if (inputValue) {
-          const isValid = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(
-            inputValue
-          );
-          if (!isValid) {
-            errorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">Invalid email</div>`;
-            document.getElementById("email").value = "";
-          } else {
-            errorDisplayArea.innerHTML = ``;
-            
-            handleEmailValidation(inputValue);
-          }
-        } else {
-          errorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">Email can't be empty</div>`;
-        }
-      }
 
-      function handleEmailValidation(email){
-        const emailErrorDisplayArea = document.querySelector(
-            ".validate-email-display-error-section"
-          );
-          const passwordErrorDisplayArea = document.querySelector(
-            ".validate-password-display-error-section"
-          );  
-          const inputValue = document.getElementById("password").value;
-          if(inputValue !== ""){
-            user.email = email;
-            user.password = inputValue;
-            posting();
-          }
-          else{
-            passwordErrorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">password can't be empty</div>`;
-            document.getElementById("password").value = "";
-          }
-      }
+  //cookies 
+  const cookie = Cookie();
 
-    function handleSubmit (e) {
-        e.preventDefault();
-        handleEmailChange();
-    };
 
-    async function posting(){
-      let response;
+
+
+
+  const passwordToggleVisibility = () => {
+    setPasswordVisible(prevVisible => !prevVisible);
+  };
+
+  const validateEmail = (email) => {
+    return /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    const inputValue = e.target.value;
+    setEmail(inputValue);
+    if (!inputValue) {
+      setEmailError("Email can't be empty");
+    } else if (!validateEmail(inputValue)) {
+      setEmailError("Invalid email");
+    } else {
+      setEmailError('');
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const inputValue = e.target.value;
+    setPassword(inputValue);
+    if (!inputValue) {
+      setPasswordError("Password can't be empty");
+    } else {
+      setPasswordError('');
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (email && validateEmail(email) && password) {
       try {
-        response = await axios.post('http://localhost:6060/auth/signIn', user);
-        const emailErrorDisplayArea = document.querySelector(
-          ".validate-email-display-error-section"
-        );
-        const passwordErrorDisplayArea = document.querySelector(
-          ".validate-password-display-error-section"
-        );
-        switch(response.status) {
+        const response = await axios.post('http://localhost:6060/auth/signIn', { email, password });
+        switch (response.data.message) {
           case 'Invalid password':
-            passwordErrorDisplayArea.innerHTML = `<div style="color:red; font-size: small; font-weight: bold;">Password is in valid</div>`;
+            setPasswordError("Password is invalid");
             break;
           case 'Invalid user':
-            emailErrorDisplayArea.innerHTML = `<div style="color:red; font-size: small; font-weight: bold;">Invalid user email</div>`;
-            passwordErrorDisplayArea.innerHTML = "";
-            document.getElementById("password").value = "";
+            setEmailError("Invalid user email");
+            setPassword('');
             break;
-          case "success":
-            emailErrorDisplayArea.innerHTML = `<div style="color:green; font-size: small; font-weight: bold;">Success</div>`;
-            passwordErrorDisplayArea.innerHTML = "";
+          case 'seccess':
+            setEmailError('');
+            setPasswordError('');
+            setGeneralError("Success");
+            const token = response.data.token;
+            cookie.set('GiftopiaToken',token)
+            if(response.data.role == 'admin'){
+              window.location.pathname = '/dashpord'
+            }
+            else if (response.data.role == 'GeneralUser'){
+              window.location.pathname = '/home'
+
+            }
+
             break;
           default:
-            console.error('Unexpected response status:', response.status);
+            setGeneralError("Unexpected response");
+            console.error('Unexpected response status:', response.data.message);
         }
       } catch (error) {
-        setErrorBack(error.response.data.message)
+        console.error(error);
+        setGeneralError("An error occurred");
       }
+    } else {
+      if (!email) setEmailError("Email can't be empty");
+      if (!password) setPasswordError("Password can't be empty");
     }
+  };
 
-    return(
-        <div className="registration-form-container">
-        <div className="registration-form">
-          <h1>Login</h1>
-          <form>
-              <div className="registration-form-group">
-              {errorBack && <div className="validate-name-display-backend-error-section">{errorBack}</div>}
-              <div className="validate-email-display-error-section"></div>
-              <label htmlFor="email">Email</label>
-              <input id="email" name="email" />
-            </div>
-            <div className="registration-form-group">
-              <div className="validate-password-display-error-section"></div>
-                <label htmlFor="password">Password</label>
-                <div className="password-input-and-hide-show-button">
-                    <input
-                    type={passwordVisible ? "text" : "password"}
-                    id="password"
-                    name="password"
-                    />
-                    <button
-                    className="validate-password-button"
-                    type="button"
-                    onClick={passwordToggleVisibility}
-                    >
-                    {passwordVisible ? "Hide" : "Show"}
-                    </button>
-                </div>
-            </div>
-             
-            <div className="registration-buttons">
-            <button type="submit" className="back-to-login-button" onClick={handleSubmit}>
-                Login
-              </button>
+  return (
+    <div className="registration-form-container">
+      <div className="registration-form">
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="registration-form-group">
+            {emailError && <div className="validate-email-display-error-section" style={{ color: 'red', fontSize: 'x-small', fontWeight: 'bold' }}>{emailError}</div>}
+            <label htmlFor="email">Email</label>
+            <input id="email" name="email" value={email} onChange={handleEmailChange} />
+          </div>
+          <div className="registration-form-group">
+            {passwordError && <div className="validate-password-display-error-section" style={{ color: 'red', fontSize: 'x-small', fontWeight: 'bold' }}>{passwordError}</div>}
+            <label htmlFor="password">Password</label>
+            <div className="password-input-and-hide-show-button">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                id="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
               <button
-                type="submit"
-                className="create-account-button"
+                className="validate-password-button"
+                type="button"
+                onClick={passwordToggleVisibility}
               >
-                Create New Account
+                {passwordVisible ? "Hide" : "Show"}
               </button>
             </div>
-          </form>
-        </div>
+          </div>
+          {generalError && <div style={{ color: generalError === "Success" ? 'green' : 'red', fontSize: 'small', fontWeight: 'bold' }}>{generalError}</div>}
+          <div className="registration-buttons">
+            <button type="submit" className="back-to-login-button">
+              Login
+            </button>
+            <button type="button" className="create-account-button">
+              Create New Account
+            </button>
+          </div>
+        </form>
       </div>
-    );
-};
+    </div>
+  );
+}

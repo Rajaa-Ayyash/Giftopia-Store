@@ -91,4 +91,8 @@
     background-color: #F28482;
     color: #fff;
 }
-
+.validate-email-display-backend-error-section{
+  color:red;
+   font-size: -small;
+    font-weight: bold;
+}

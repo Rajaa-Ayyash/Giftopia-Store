@@ -19,6 +19,13 @@
   .validate-name-display-error-section{
     margin-top: 20px;
   }
+
+  .validate-name-display-backend-error-section{
+    color:red;
+     font-size: -small;
+      font-weight: bold;
+  }
+
   .registration-form-group {
     display: flex;
     flex-direction: column;

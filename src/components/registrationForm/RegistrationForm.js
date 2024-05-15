@@ -12,9 +12,9 @@ const user ={
     phone: '',
     gender: 'male'
 }
-
+const [errorBack,setErrorBack]=useState('')
 const [genderSelected,setGenderSelected] = useState("Male")
-  const[passwordVisible,setPasswordVisible]=useState(false);
+const[passwordVisible,setPasswordVisible]=useState(false);
   function passwordToggleVisibility(){
     setPasswordVisible(prevVisible => !prevVisible);
   };
@@ -192,15 +192,18 @@ const [genderSelected,setGenderSelected] = useState("Male")
           console.error('Unexpected response status:', response.status);
       }
     } catch (error) {
-      console.log(error);
+      setErrorBack(error.response.data.message)
     }
   }
+
+
 
     return (
       <div className="registration-form-container">
         <div className="registration-form">
           <h1>Registration</h1>
           <form>
+          {errorBack && <div className="validate-name-display-backend-error-section">{errorBack}</div>}
             <div className="validate-name-display-error-section"></div>
             <div className="name-section-registration-form">
               <div className="registration-form-group">

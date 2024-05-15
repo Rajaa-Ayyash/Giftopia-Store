@@ -3,6 +3,7 @@ import './LoginForm.css'
 import axios from 'axios';
 
 export default function LoginForm (){
+    const [errorBack,setErrorBack]=useState('')
     const[passwordVisible,setPasswordVisible]=useState(false);
     function passwordToggleVisibility(){
       setPasswordVisible(prevVisible => !prevVisible);
@@ -60,15 +61,16 @@ export default function LoginForm (){
     };
 
     async function posting(){
+      let response;
       try {
-        const response = await axios.post('http://localhost:6060/auth/signIn', user);
+        response = await axios.post('http://localhost:6060/auth/signIn', user);
         const emailErrorDisplayArea = document.querySelector(
           ".validate-email-display-error-section"
         );
         const passwordErrorDisplayArea = document.querySelector(
           ".validate-password-display-error-section"
         );
-        switch(response.data.message) {
+        switch(response.status) {
           case 'Invalid password':
             passwordErrorDisplayArea.innerHTML = `<div style="color:red; font-size: small; font-weight: bold;">Password is in valid</div>`;
             break;
@@ -85,7 +87,7 @@ export default function LoginForm (){
             console.error('Unexpected response status:', response.status);
         }
       } catch (error) {
-        console.log(error);
+        setErrorBack(error.response.data.message)
       }
     }
 
@@ -94,7 +96,8 @@ export default function LoginForm (){
         <div className="registration-form">
           <h1>Login</h1>
           <form>
-            <div className="registration-form-group">
+              <div className="registration-form-group">
+              {errorBack && <div className="validate-name-display-backend-error-section">{errorBack}</div>}
               <div className="validate-email-display-error-section"></div>
               <label htmlFor="email">Email</label>
               <input id="email" name="email" />

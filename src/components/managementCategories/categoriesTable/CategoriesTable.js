@@ -4,6 +4,7 @@ import Dropdown from "./dropdown/Dropdown.js";
 import AddNewModal from "./addNewModal/AddNewModal.js";
 import {  FaSearch,FaTrash,FaTimes } from 'react-icons/fa';
 import axios from 'axios';
+import Cookie from 'cookie-universal';
 
 export default function CategoriesTable(){
   const [rows, setRows]= useState([])
@@ -11,7 +12,8 @@ export default function CategoriesTable(){
   const [search,setSearch]= useState('')
   const [openAddNewModal, setOpenAddNewModal] = useState(false);
 
-  const authToken = 'Giftopia__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2Q2ZTE0YzAxNTQxMzM5YjFhYWI5ZSIsImVtYWlsIjoiYWxhd25haC5tb29oYW1hZEBnbWFpbC5jb20iLCJpYXQiOjE3MTU0NTQ4MDV9.8uHVog7zHykMjW_5pzU_88Xx_hC_QPdAKmDROo45ZaA';
+  const cookie = Cookie();
+  const authToken = cookie.get('GiftopiaToken');
 
   async function handleDeleteRow (categoryName){
     try {

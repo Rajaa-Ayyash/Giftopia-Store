@@ -16,16 +16,6 @@
   .registration-form h1{
     text-align: center;
   }  
-  .validate-name-display-error-section{
-    margin-top: 20px;
-  }
-
-  .validate-name-display-backend-error-section{
-    color:red;
-     font-size: -small;
-      font-weight: bold;
-  }
-
   .registration-form-group {
     display: flex;
     flex-direction: column;
@@ -45,43 +35,19 @@
     font-size: 1rem;
   }
 
-.name-section-registration-form{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.password-input-and-hide-show-button{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
 }
-.name-section-registration-form div{
-  max-width:48%;
-}
-
-.age-gender-section-registration-form{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.age-gender-section-registration-form div{
-  max-width:48%;
+.password-input-and-hide-show-button input{
+    flex:1;
 }
 
 .validate-password-button{
   background-color: transparent;
   border: none;
   color: #F28482;
-}
-
-
-.location-section-registration-form{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.location-section-registration-form div{
-  max-width:30.5%;
-}
-
-.location-section-registration-form label{
-  color: #6B7280;
 }
 
 .registration-form .save-button {
@@ -94,38 +60,39 @@
 }
 
 .back-to-login-button{
-  padding: 0px 10px;
-    font-weight: 500;
-    border: 2px solid #F5CAC3;
-    border-radius: 6px;
-    background-color: transparent;
-    color: #F28482;
-}
-.back-to-login-button:hover{
-  padding: 0px 10px;
+    padding: 0px 10px;
     font-weight: 500;
     border: 2px solid #F28482;
     border-radius: 6px;
     background-color: #F28482;
     color: #fff;
+}
+.back-to-login-button:hover{
+    border: 2px solid #F5CAC3;
+    padding: 0px 10px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #F28482;
 }
 
 .create-account-button {
     padding: 0px 10px;
     font-weight: 500;
+    border: 2px solid #F5CAC3;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #F28482;
+}
+.create-account-button:hover {
+    padding: 0px 10px;
+    font-weight: 500;
     border: 2px solid #F28482;
     border-radius: 6px;
     background-color: #F28482;
     color: #fff;
 }
-.create-account-button:hover {
-    border: 2px solid #F5CAC3;
-    padding: 0px 10px;
-    border-radius: 6px;
-    background-color: transparent;
-    color: #F28482;
-}
-
-.gender-dropdown{
-  width: 160px;
+.validate-email-display-backend-error-section{
+  color:red;
+   font-size: -small;
+    font-weight: bold;
 }

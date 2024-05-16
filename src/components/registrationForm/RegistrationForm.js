@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./RegistrationForm.css";
 import Dropdown from "./dropdown/Dropdown.js";
 import axios from 'axios';
+import Cookie from 'cookie-universal'
 
 export default function RegistrationForm (){
 const user ={
@@ -15,6 +16,7 @@ const user ={
 const [errorBack,setErrorBack]=useState('')
 const [genderSelected,setGenderSelected] = useState("Male")
 const[passwordVisible,setPasswordVisible]=useState(false);
+const cookie = Cookie();
   function passwordToggleVisibility(){
     setPasswordVisible(prevVisible => !prevVisible);
   };
@@ -187,6 +189,9 @@ const[passwordVisible,setPasswordVisible]=useState(false);
           break;
         case 'success':
           errorDisplayArea.innerHTML = `<div style="color:green; font-size: -small; font-weight: bold;">Success</div>`;
+          const token = response.data.token;
+          cookie.set('GiftopiaToken',token)
+          window.location.pathname = '/home'
           break;
         default:
           console.error('Unexpected response status:', response.status);

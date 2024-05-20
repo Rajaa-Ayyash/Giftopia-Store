@@ -15,15 +15,12 @@ export default function CategoriesTable(){
   const cookie = Cookie();
   const authToken = cookie.get('GiftopiaToken');
 
-  async function handleDeleteRow (categoryName){
+  async function handleDeleteRow (id){
     try {
-      await axios.delete('http://localhost:6060/category/deleteCategory', {
+      await axios.delete(`http://localhost:6060/category/deleteCategory/${id}`, {
         headers: {
           Authorization: authToken
         },
-        data:{
-          name:categoryName
-        }
       });
       getCategories();
     } catch (error) {
@@ -44,7 +41,7 @@ export default function CategoriesTable(){
       if(categoryName){
         try {
           const response = await axios.post('http://localhost:6060/category/addNewCategory', {
-            name: categoryName
+            name: categoryName,
           }, {
             headers: {
               Authorization: authToken
@@ -70,12 +67,12 @@ export default function CategoriesTable(){
 
   async function getCategories(){
     try {
-      const response = await axios.get('http://localhost:6060/category/displayAllCategories', {
+      const response = await axios.get('http://localhost:6060/category', {
         headers: {
           Authorization: authToken
         }
       });
-      setRows(response.data)
+      setRows(response.data.message)
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -116,7 +113,7 @@ export default function CategoriesTable(){
                   <tr key={row.name}>
                     <td>{row.name}</td>
                     <td>
-                      <button className='delete-button' onClick={()=>handleDeleteRow(row.name)}><FaTrash/></button>
+                      <button className='delete-button' onClick={()=>handleDeleteRow(row._id)}><FaTrash/></button>
                     </td>
                   </tr>
                 );

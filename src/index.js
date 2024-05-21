@@ -14,6 +14,7 @@ import {
 
 
 import Home from './pages/home/Home.js';
+import ResetPassword from './ResetPassword.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -25,6 +26,12 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Home />,
   },
+  {
+    path: "/ResetPassword",
+    element: <ResetPassword />,
+  },
+
+
 ]);
 root.render(
   <React.StrictMode>

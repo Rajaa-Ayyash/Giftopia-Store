@@ -5,7 +5,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 export default function Dropdown({ selected, setSelected }) {
   const [isActive, setIsActive] = useState(false)
-  const options = ['Product id', 'Product number', 'Product title', 'Product description', 'Product price', 'Product occasion', 'Product imageUrl', 'Product sourceUrl']
+  const options = ['Product id', 'Product number', 'Product name', 'Product description','In stock', 'Producr price', 'Product finalPrice', 'Product discount', 'Product size', 'Product color', 'Product imageUrl']
 
   return (
 <>
@@ -21,15 +21,6 @@ export default function Dropdown({ selected, setSelected }) {
         )}
       </div>
 </div>
-
-
-
-
-
-
-
-
-
 </>
-    );
+  );
 }

@@ -12,77 +12,98 @@ export default function ProductTable() {
 
   const [rows, setRows] = useState([
     {
-      productID: "600",
-      productNumber: "1",
-      productDiscription: "Face creem",
-      productTitle: "cerave",
-      productPrice: "36$",
-      productOccasion: "birthday",
-      imgURL: "haja/dsjdns/bsmds:djsk",
-      SourceURL: "dskjdk/alkdlaaplodpa//aldm"
-    },
-    {
-      productID: "577",
-      productNumber: "2",
-      productDiscription: "smart phone",
-      productTitle: "Iphone",
-      productPrice: "15$",
-      productOccasion: "birthday",
-      imgURL: "haja/dsjdns/bsmds:djsk",
-      SourceURL: "dskjdk/alkdlaaplodpa//aldm"
-    },
-    {
-      productID: "67",
-      productNumber: "3",
-      productDiscription: "football",
-      productTitle: "ball",
-      productPrice: "7008$",
-      productOccasion: "birthday",
-      imgURL: "haja/dsjdns/bsmds:djsk",
-      SourceURL: "dskjdk/alkdlaaplodpa//aldm"
-    },
-    {
-      productID: "000",
-      productNumber: "4",
-      productDiscription: "skin care",
-      productTitle: "cerave",
-      productPrice: "300$",
-      productOccasion: "mothers day",
-      imgURL: "haja/dsjdns/bsmds:djsk",
-      SourceURL: "dskjdk/alkdlaaplodpa//aldm",
-    },
-    {
       productID: "15",
+      productNumber: '1' ,
+      productName: "cerave",
+      productDiscription: "Face creem",
+      inStock: "10000",
+      price: "15$",
+      discount: "3%",
+      finalPrice: "11$",
+      size: "88ml",
+      colors: "one color",
+      imgURL: "vhjgd/jwof:nkwflw/wojo"
+    },
+    {
+      productID: "36",
+      productNumber: "2",
+      productName: "iPhon 15",
+      productDiscription: "Smart phone",
+      inStock: "108",
+      price: "800$",
+      discount: "5%",
+      finalPrice: "750$",
+      size: "O/S",
+      colors: "Black, White, Selver",
+      imgURL: "vhjgd/jwof:nkwflw/wojoo"
+    },
+    {
+      productID: "20",
+      productNumber: "3",
+      productName: "t-shirt",
+      productDiscription: "women red t-shirt",
+      inStock: "50",
+      price: "15$",
+      discount: "3%",
+      finalPrice: "7$",
+      size: "s, m, l, xl",
+      colors: "Red",
+      imgURL: "vhjgd/jwof:nkwflw/wojo"
+    },
+    {
+      productID: "25",
+      productNumber: "4",
+      productName: "cerave",
+      productDiscription: "Face creem",
+      inStock: "198",
+      price: "15$",
+      discount: "3%",
+      finalPrice: "5$",
+      size: "88ml",
+      colors: "one color",
+      imgURL: "vhjgd/jwof:nkwflw/wojo"
+    },
+    {
+      productID: "132",
       productNumber: "5",
-      productDiscription: "dress",
-      productTitle: "dressss",
-      productPrice: "4$",
-      productOccasion: "mothers day",
-      imgURL: "haja/dsjdns/bsmds:djsk",
-      SourceURL: "dskjdk/alkdlaaplodpa//aldm"
+      productName: "cerave",
+      productDiscription: "Face creem",
+      inStock: "19",
+      price: "15$",
+      discount: "3%",
+      finalPrice: "11$",
+      size: "88ml",
+      colors: "one color",
+      imgURL: "vhjgd/jwof:nkwflw/wojo"
     },
     {
-      productID: "6789",
+      productID: "132",
       productNumber: "6",
-      productDiscription: "hi",
-      productTitle: "jk",
-      productPrice: "7$",
-      productOccasion: "birthday",
-      imgURL: "haja/dsjdns/bsmds:djsk",
-      SourceURL: "dskjdk/alkdlaaplodpa//aldm"
+      productName: "shorts",
+      productDiscription: "men shorts",
+      inStock: "60",
+      price: "15$",
+      discount: "4%",
+      finalPrice: "10$",
+      size: "88ml",
+      colors: "s, xl",
+      imgURL: "vhjgd/jwof:nkwflw/wojo"
     },
     {
-      productID: "7842",
+      productID: "132",
       productNumber: "7",
-      productDiscription: "jhaj",
-      productTitle: "HM",
-      productPrice: "60$",
-      productOccasion: "wedding",
-      imgURL: "haja/dsjdns/bsmds:djsk",
-      SourceURL: "dskjdk/alkdlaaplodpa//aldm"
+      productName: "cerave",
+      productDiscription: "Face creem",
+      inStock: "198",
+      price: "15$",
+      discount: "3%",
+      finalPrice: "11$",
+      size: "88ml",
+      colors: "one color",
+      imgURL: "vhjgd/jwof:nkwflw/wojo"
     },
   ])
-  
+
   const [selectedSearchBy, setSelectedSearchBy] = useState("Search By...")
   const [open, setOpen] = useState(false)
   const [rowToEditProductNumber, setRowToEditProductNumber] = useState(0);
@@ -92,7 +113,7 @@ export default function ProductTable() {
     setRows(rows.filter(row => row.productNumber !== targetIndex));
   }
 
-  function handlAdduser(targetIndex){
+  function handlAdduser(targetIndex) {
     setRowToEditProductNumber(targetIndex);
     setOpen(true);
   }
@@ -121,85 +142,96 @@ export default function ProductTable() {
         return search.toLowerCase() === '' ? item : item.productID.toLowerCase().includes(search);
       case 'product number':
         return search.toLowerCase() === '' ? item : item.productNumber.toLowerCase().includes(search);
+      case 'product name':
+        return search.toLowerCase() === '' ? item : item.productName.toLowerCase().includes(search);
       case 'product description':
         return search.toLowerCase() === '' ? item : item.productDiscription.toLowerCase().includes(search);
-      case 'product title':
-        return search.toLowerCase() === '' ? item : item.productTitle.toLowerCase().includes(search);
-      case 'product price':
-        return search.toLowerCase() === '' ? item : item.productPrice.toLowerCase().includes(search);
-      case 'product occasion':
-        return search.toLowerCase() === '' ? item : item.productOccasion.toLowerCase().includes(search);
+      case 'in stock':
+        return search.toLowerCase() === '' ? item : item.inStock.toLowerCase().includes(search);
+      case 'producr price':
+        return search.toLowerCase() === '' ? item : item.price.toLowerCase().includes(search);
+      case 'product discount':
+        return search.toLowerCase() === '' ? item : item.discount.toLowerCase().includes(search);
+      case 'product finalprice':
+        return search.toLowerCase() === '' ? item : item.finalPrice.toLowerCase().includes(search);
+      case 'product size':
+        return search.toLowerCase() === '' ? item : item.size.toLowerCase().includes(search);
+      case 'product color':
+          return search.toLowerCase() === '' ? item : item.colors.toLowerCase().includes(search);
       case 'product imageurl':
         return search.toLowerCase() === '' ? item : item.imgURL.toLowerCase().includes(search);
-      case 'product sourceurl':
-        return search.toLowerCase() === '' ? item : item.SourceURL.toLowerCase().includes(search);
       default:
         return search.toLowerCase() === '' ? item : item.productID.toLowerCase().includes(search);
     }
   };
 
 
-
   return (
 
     <>
-        <div className="body">
-          <div className="head">
-            <div className="title">PRODUCT</div>
-            <div className="search-field">
-              <Dropdown selected={selectedSearchBy} setSelected={setSelectedSearchBy} />
-              <div className="search-input">
-                <input className="search-input-field" placeholder="Search" value={search} onChange={(e) => (setSearch(e.target.value))} />
-                {search ? <div className='clear-icon' onClick={() => (setSearch(''))}><FaTimes /></div> : ''}
-              </div>
-              <div className='search-icon'><FaSearch /></div>
+      <div className="body">
+        <div className="head">
+          <div className="title">PRODUCT</div>
+          <div className="search-field">
+            <Dropdown selected={selectedSearchBy} setSelected={setSelectedSearchBy} />
+            <div className="search-input">
+              <input className="search-input-field" placeholder="Search" value={search} onChange={(e) => (setSearch(e.target.value))} />
+              {search ? <div className='clear-icon' onClick={() => (setSearch(''))}><FaTimes /></div> : ''}
             </div>
-            <button type="button" className="adduser-button" onClick={()=>handlAdduser()}><TfiPlus /></button>
+            <div className='search-icon'><FaSearch /></div>
           </div>
-          <div className="table">
-            <table className="ordersTable">
-              <thead>
-                <tr>
-                  <th className="columnHeader">PRODUCT ID</th>
-                  <th className="columnHeader">PRODUCT NUMBER</th>
-                  <th className="columnHeader">PRODUCT DESCRIPTION</th>
-                  <th className="columnHeader">PRODUCT TITLE</th>
-                  <th className="columnHeader">PRODUCT PRICE</th>
-                  <th className="columnHeader">PRODUCT OCCASION</th>
-                  <th className="columnHeader">PRODUCT IMAGEURL</th>
-                  <th className="columnHeader">PRODUCT SOURCEURL</th>
-                  <th className="columnHeader">EDIT</th>
-                  <th className="columnHeader">DELETE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.filter((item) => {
-                  return handleSearchType(item);
-                }).map((row) => {
-                  return (
-                    <tr key={row.productNumber}>
-                      <td>{row.productID}</td>
-                      <td>{row.productNumber}</td>
-                      <td>{row.productDiscription}</td>
-                      <td>{row.productTitle}</td>
-                      <td>{row.productPrice}</td>
-                      <td>{row.productOccasion}</td>
-                      <td>{row.imgURL}</td>
-                      <td>{row.SourceURL}</td>
-                      <td>
-                        <button className='edit-button' onClick={() => (handleEditRow(row.productNumber))}><RiEdit2Line /></button>
-                      </td>
-                      <td>
-                        <button className='delete-button' onClick={() => handleDeleteRow(row.productNumber)}><FaTrash /></button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          {open && <EditModal closeEditModal={() => (setOpen(false))} defaultValue={rowToEditProductNumber !== null && rows.find(row => row.productNumber === rowToEditProductNumber)} onSubmit={handleSubmit} />}
+          <button type="button" className="adduser-button" onClick={() => handlAdduser()}><TfiPlus /></button>
         </div>
+        <div className="table">
+          <table className="ordersTable">
+            <thead>
+              <tr>
+                <th className="columnHeader">PRODUCT ID</th>
+                <th className="columnHeader">PRODUCT NUMBER</th>
+                <th className="columnHeader">PRODUCT NAME</th>
+                <th className="columnHeader">PRODUCT DESCRIPTION</th>
+                <th className="columnHeader">IN STOCK</th>
+                <th className="columnHeader">PRODUCT PRICE</th>
+                <th className="columnHeader">DISCOUNT</th>
+                <th className="columnHeader">FINAL PRICE</th>
+                <th className="columnHeader">PRODUCT SIZE</th>
+                <th className="columnHeader">PRODUCT COLORS</th>
+                <th className="columnHeader">IMAGEURL</th>
+                <th className="columnHeader">EDIT</th>
+                <th className="columnHeader">DELETE</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.filter((item) => {
+                return handleSearchType(item);
+              }).map((row) => {
+                return (
+                  <tr key={row.productNumber}>
+                    <td>{row.productID}</td>
+                    <td>{row.productNumber}</td>
+                    <td>{row.productName}</td>
+                    <td>{row.productDiscription}</td>
+                    <td>{row.inStock}</td>
+                    <td>{row.price}</td>
+                    <td>{row.discount}</td>
+                    <td>{row.finalPrice}</td>
+                    <td>{row.size}</td>
+                    <td>{row.colors}</td>
+                    <td>{row.imgURL}</td>
+                    <td>
+                      <button className='edit-button' onClick={() => (handleEditRow(row.productNumber))}><RiEdit2Line /></button>
+                    </td>
+                    <td>
+                      <button className='delete-button' onClick={() => handleDeleteRow(row.productNumber)}><FaTrash /></button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        {open && <EditModal closeEditModal={() => (setOpen(false))} defaultValue={rowToEditProductNumber !== null && rows.find(row => row.productNumber === rowToEditProductNumber)} onSubmit={handleSubmit} />}
+      </div>
     </>
   );
 }

@@ -2,8 +2,8 @@
     max-height: 56px;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    gap:1em;
+    justify-content: center;
+    
 }
 @media screen and (max-width: 748px) {
     .all-buttons{

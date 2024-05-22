@@ -1,10 +1,9 @@
-import AmountToggle from "./amountToggle/AmountToggle";
+
 import AddToCart from "./addToCart/AddToCart";
-import Buy from "./buy/Buy";
 import React, { useState } from "react";
 import "./ProductPurchaseButtons.css";
 
-export default function ProductPurchaseButtons ({stock}){
+export default function ProductPurchaseButtons ({authToken,productId,stock}){
     const [amount, setAmount] = useState(1);
 
     const decrease = () => {
@@ -16,9 +15,7 @@ export default function ProductPurchaseButtons ({stock}){
     };
     return(
         <div className="all-buttons">
-            <AmountToggle amount={amount} decrease={decrease} increase={increase} />
-            <AddToCart/>
-            <Buy/>
+            <AddToCart authToken={authToken} productId={productId}/>
         </div>
     );
 };

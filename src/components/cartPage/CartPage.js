@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect }from "react";
 import "./CartPage.css";
 import "./AnimatedButton.css";
 import AnimatedTruckButton from "./AnimatedButton.js";
 import { MdDelete } from "react-icons/md";
+import cookies from 'cookie-universal';
+import axios from "axios";
+
 
 function CartItem({
   imageUrl,
@@ -136,6 +139,28 @@ function CartPage() {
     0
   );
   const totalWithShipping = totalPrice + shippingCost - discount;
+
+  const myCookies = cookies();
+  const token = myCookies.get('GiftopiaToken'); // استبدل 'tokenName' بالاسم الفعلي للكوكي
+console.log(token)
+const [product,setProduct] =useState([]);
+useEffect(()=>{
+  getProduct();
+},[])
+
+const getProduct=async()=>{
+  const getProducts = await axios({
+    method: 'get', // أو 'post', 'put', 'delete' حسب الحاجة
+    url: 'http://localhost:6060/cart',
+    headers: {
+      Authorization: `Giftopia__ ${token}` // إضافة الـ token في الرأس
+    }
+  })
+  console.log(getProducts.data.message)
+  setProduct(getProducts.data.message)
+}
+
+
 
   return (
     <div className="CartPage ">

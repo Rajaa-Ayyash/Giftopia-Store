@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     path:"/cart",
     element:<CartShopping/>
   }
-  },
+  ,
   {
     path : '/login',
     element : <LoginFormPage />,

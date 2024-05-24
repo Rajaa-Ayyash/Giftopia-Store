@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+//{ --- , useEffect }
 import "./ProductTableD.css";
 import Dropdown from "./dropdown/Dropdown.js";
 import EditModal from "./editModal/EditModal.js";
 import { FaSearch, FaTrash, FaTimes } from 'react-icons/fa';
 import { RiEdit2Line } from 'react-icons/ri';
 import { TfiPlus } from "react-icons/tfi";
-
+//import axios from 'axios';
+//import Cookie from 'cookie-universal';
 
 export default function ProductTable() {
 
@@ -108,6 +110,10 @@ export default function ProductTable() {
   const [open, setOpen] = useState(false)
   const [rowToEditProductNumber, setRowToEditProductNumber] = useState(0);
   const [search, setSearch] = useState('');
+  //const cookie = Cookie();
+  //const authToken = cookie.get('GiftopiaToken');
+
+
 
   function handleDeleteRow(targetIndex) {
     setRows(rows.filter(row => row.productNumber !== targetIndex));
@@ -133,6 +139,66 @@ export default function ProductTable() {
         })
       );
   };
+
+  
+// ----------- Code for trying to connect with the product backend -----------
+ /* useEffect(() => {
+    getProduct();
+  }, []);
+
+
+  async function getProduct() {
+    try {
+      const response = await axios.get('http://localhost:3001/product', {
+        headers: {
+          Authorization: `giftopia ${authToken}`
+        }
+      });
+      setRows(response.data.products);
+    } catch (error) {
+      alert(error.response?.data?.message || "Error fetching products");
+    }
+  }*/
+
+// ----------- Code for trying to connect with the product backend -----------
+
+  /*async function handleSubmit(newRow) {
+    try {
+      if (rowToEditProductNumber === null) {
+        const response = await axios.post('http://localhost:3001/product/addNewProduct', newRow, {
+          headers: {
+            Authorization: `Giftopia ${authToken}`
+          }
+        });
+        setRows([...rows, response.data.product]);
+      } else {
+        const response = await axios.put(`http://localhost:3001/product/${rowToEditProductNumber}`, newRow, {
+          headers: {
+            Authorization: `Giftopia__ ${authToken}`
+          }
+        });
+        setRows(rows.map(row => (row.productNumber !== rowToEditProductNumber ? row : response.data.product)));
+      }
+      setOpen(false);
+    } catch (error) {
+      alert(error.response?.data?.message || "Error submitting product");
+    }
+  }
+
+  async function handleDeleteProduct(productId) {
+    try {
+      await axios.delete(`http://localhost:3001/product/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        }
+      });
+      setRows(rows.filter(row => row._id !== productId));
+    } catch (error) {
+      alert(error.response?.data?.message || "Error deleting product");
+    }
+  }*/
+
+
 
   function handleSearchType(item) {
 

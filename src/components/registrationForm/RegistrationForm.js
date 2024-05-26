@@ -12,9 +12,6 @@ const user ={
     phone: '',
     gender: 'male'
 }
-
-const [genderSelected,setGenderSelected] = useState("Male")
-  const[passwordVisible,setPasswordVisible]=useState(false);
   function passwordToggleVisibility(){
     setPasswordVisible(prevVisible => !prevVisible);
   };
@@ -178,29 +175,18 @@ const [genderSelected,setGenderSelected] = useState("Male")
       const errorDisplayArea = document.querySelector(
         ".validate-name-display-error-section"
       );
-      switch(response.status) {
-        case 409:
-          errorDisplayArea.innerHTML = `<div style="color:red; font-size: x-small; font-weight: bold;">${response.data.message}</div>`;
-          break;
-        case 500:
-          errorDisplayArea.innerHTML = `<div style="color:red; font-size: x-small; font-weight: bold;">Error creating user</div>`;
-          break;
-        case 201:
-          errorDisplayArea.innerHTML = `<div style="color:green; font-size: x-small; font-weight: bold;">Success</div>`;
           break;
         default:
           console.error('Unexpected response status:', response.status);
       }
     } catch (error) {
-      console.log(error);
-    }
-  }
 
     return (
       <div className="registration-form-container">
         <div className="registration-form">
           <h1>Registration</h1>
           <form>
+          {errorBack && <div className="validate-name-display-backend-error-section">{errorBack}</div>}
             <div className="validate-name-display-error-section"></div>
             <div className="name-section-registration-form">
               <div className="registration-form-group">

@@ -40,8 +40,10 @@ const Slider = () => {
 
   return (
 
-    <main>
+    <main >
+      <div className='headerr'>
       <header></header>
+      </div>
       <section className="slider">
         <div className="list">
           {sliderItems.map((item, index) => (

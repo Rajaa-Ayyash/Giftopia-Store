@@ -1,13 +1,12 @@
-import Headar from '../../components/headarHome/Headar'
+import Headar from '../../../components/headarHome/Headar.js'
 
 const HeadarPage =()=>{
 return(
 
   <div>
-
     <Headar></Headar>
-
   </div>
+
 )
 };
 

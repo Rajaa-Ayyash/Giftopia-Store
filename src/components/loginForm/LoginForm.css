@@ -1,0 +1,98 @@
+.registration-form-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registration-form {
+  border: 1px solid #D1D5DB;
+    border-radius: 5px;
+    padding: 2rem;
+    background-color: white;
+    width: 25em;
+  }
+  .registration-form h1{
+    text-align: center;
+  }  
+  .registration-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .registration-form-group label{
+    color: #6B7280;
+  }
+  
+  .registration-form-group input,
+  .registration-form-group textarea,
+  .registration-form-group select {
+    color: #6B7280;
+    border: 1px solid #dddddd;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+  }
+
+.password-input-and-hide-show-button{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.password-input-and-hide-show-button input{
+    flex:1;
+}
+
+.validate-password-button{
+  background-color: transparent;
+  border: none;
+  color: #F28482;
+}
+
+.registration-form .save-button {
+    display: block;
+    margin: 10px auto auto auto ;
+}
+.registration-buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-to-login-button{
+    padding: 0px 10px;
+    font-weight: 500;
+    border: 2px solid #F28482;
+    border-radius: 6px;
+    background-color: #F28482;
+    color: #fff;
+}
+.back-to-login-button:hover{
+    border: 2px solid #F5CAC3;
+    padding: 0px 10px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #F28482;
+}
+
+.create-account-button {
+    padding: 0px 10px;
+    font-weight: 500;
+    border: 2px solid #F5CAC3;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #F28482;
+}
+.create-account-button:hover {
+    padding: 0px 10px;
+    font-weight: 500;
+    border: 2px solid #F28482;
+    border-radius: 6px;
+    background-color: #F28482;
+    color: #fff;
+}
+.validate-email-display-backend-error-section{
+  color:red;
+   font-size: -small;
+    font-weight: bold;
+}

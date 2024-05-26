@@ -12,9 +12,7 @@ const user ={
     phone: '',
     gender: 'male'
 }
-const [errorBack,setErrorBack]=useState('')
-const [genderSelected,setGenderSelected] = useState("Male")
-const[passwordVisible,setPasswordVisible]=useState(false);
+
   function passwordToggleVisibility(){
     setPasswordVisible(prevVisible => !prevVisible);
   };
@@ -178,25 +176,12 @@ const[passwordVisible,setPasswordVisible]=useState(false);
       const errorDisplayArea = document.querySelector(
         ".validate-name-display-error-section"
       );
-      switch(response.data.message) {
-        case "the user already exist":
-          errorDisplayArea.innerHTML = `<div style="color:red; font-size: -small; font-weight: bold;">The user already exist</div>`;
-          break;
-        case 'error creating user':
-          errorDisplayArea.innerHTML = `<div style="color:red; font-size: -small; font-weight: bold;">Error creating user</div>`;
-          break;
-        case 'success':
-          errorDisplayArea.innerHTML = `<div style="color:green; font-size: -small; font-weight: bold;">Success</div>`;
+
           break;
         default:
           console.error('Unexpected response status:', response.status);
       }
     } catch (error) {
-      setErrorBack(error.response.data.message)
-    }
-  }
-
-
 
     return (
       <div className="registration-form-container">

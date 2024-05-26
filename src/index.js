@@ -14,7 +14,7 @@ import {
 
 
 import Home from './pages/home/Home.js';
-import LoginFormPage from './pages/loginFormPage/LoginFormPage.js';
+//import LoginFormPage from './pages/loginFormPage/LoginFormPage.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
   },
   {
     path : '/login',
-    element : <LoginFormPage />,
+    // element : <LoginFormPage />,
   },
 ]);
 root.render(

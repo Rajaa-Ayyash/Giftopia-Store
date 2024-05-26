@@ -70,7 +70,7 @@ export default function LoginForm() {
         }
       } catch (error) {
         console.error(error);
-        setGeneralError("An error occurred");
+        setGeneralError(error.response.data);
       }
     } else {
       if (!email) setEmailError("Email can't be empty");

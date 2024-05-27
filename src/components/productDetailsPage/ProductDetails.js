@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ProductDetails.css"
+import ProductImages from "../productDetailsPage/productImages/ProductImages"
 import ProductRating from "./productRating/ProductRating";
 import ProductPrice from "./productPrice/ProductPrice";
 import DescriptionReviewComponent from "./descriptionReviewComponent/DescriptionReviewComponent";

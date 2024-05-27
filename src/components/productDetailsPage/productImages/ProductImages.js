@@ -1,29 +1,34 @@
-import React, { useState } from "react";
-import "./ProductImages.css"
+import React, { useState , useEffect } from "react";
+import "./ProductImages.css";
 
-export default function ProductImages ({ images }) {
-  const [mainImage, setMainImage] = useState(images[0]);
+export default function ProductImages({ mainImage, subImages }) {
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    if (mainImage && mainImage.secure_url) {
+      setImage(mainImage.secure_url);
+    }
+  }, [mainImage]);
 
   return (
     <div className="product-images">
+      {subImages != undefined && 
       <div className="sub-images">
-        {images.map((curElm, index) => {
-          return (
-            <figure key={index} className="product-image-figure">
-              <img className="product-image"
-                src={curElm.url}
-                alt={curElm.filename}
-                key={index}
-                onClick={() => setMainImage(curElm)}
-              />
-            </figure>
-          );
-        })}
-      </div>
+        {subImages.map((subImage) => (
+          <figure key={subImage.public_id} className="product-image-figure">
+            <img
+              className="product-image"
+              src={subImage.secure_url}
+              alt={subImage.public_id}
+              onClick={() => setImage(subImage.secure_url)}
+            />
+           
+          </figure>
+        ))}
+      </div>}
       <div className="main-screen">
-        <img src={mainImage.url} alt={mainImage.filename} />
+        <img src={image} alt="Main product" />
       </div>
     </div>
   );
-};
-
+}

@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import "./RegistrationForm.css";
+import Dropdown from "./dropdown/Dropdown.js";
+import axios from 'axios';
 
 export default function RegistrationForm (){
-  const[passwordVisible,setPasswordVisible]=useState(false);
+const user ={
+    userName: '',
+    email: '',
+    password: '',
+    age: '',
+    phone: '',
+    gender: 'male'
+}
+const [errorBack,setErrorBack]=useState('')
+const [genderSelected,setGenderSelected] = useState("Male")
+const[passwordVisible,setPasswordVisible]=useState(false);
   function passwordToggleVisibility(){
     setPasswordVisible(prevVisible => !prevVisible);
   };
@@ -27,7 +39,9 @@ export default function RegistrationForm (){
               document.getElementById("lastName").value = "";
             } else{
               errorDisplayArea.innerHTML = ``;
-              handleEmailChange();
+              const name=inputFirstNameValue+" "+inputLastNameValue;
+              user.userName=name;
+              handleAgeAndGenderChange();
             }
           } else{
             errorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">Last name can't be empty</div>`;
@@ -36,6 +50,12 @@ export default function RegistrationForm (){
       }else{
         errorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">First name can't be empty</div>`;
       }
+    }
+    function handleAgeAndGenderChange() {
+      const ageInputValue = document.getElementById("age").value;
+      user.age=ageInputValue;
+      user.gender=genderSelected.toLowerCase();
+      handleEmailChange()
     }
 
     function handleEmailChange() {
@@ -52,6 +72,7 @@ export default function RegistrationForm (){
           document.getElementById("email").value = "";
         } else {
           errorDisplayArea.innerHTML = ``;
+          user.email=inputValue;
           handlePasswordChange();
         }
       } else {
@@ -91,6 +112,7 @@ export default function RegistrationForm (){
       } else {
         if (inputValue === password) {
             errorDisplayArea.innerHTML = ``;
+            user.password=inputValue;
             handleLocationChange();
         } else {
             errorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">Passwords are deferent</div>`;
@@ -102,6 +124,7 @@ export default function RegistrationForm (){
     function handleLocationChange() {
       const inputCountryValue = document.getElementById("country").value;
       const inputCityValue = document.getElementById("city").value;
+      const inputStreetValue = document.getElementById("street").value;
 
       const errorDisplayArea = document.querySelector(
         ".validate-location-display-error-section"
@@ -111,6 +134,8 @@ export default function RegistrationForm (){
         errorDisplayArea.innerHTML = ``;
         if(inputCityValue){
           errorDisplayArea.innerHTML = ``;
+          const location =inputCountryValue+", "+inputCityValue+", "+inputStreetValue;
+          
           handlePhoneNumberChange();
         } else{
           errorDisplayArea.innerHTML = `<div style="color:red; font-size:"x-small" font-weight: bold;">City can't be empty</div>`;
@@ -120,11 +145,12 @@ export default function RegistrationForm (){
       }
     }
 
-    function handlePhoneNumberChange() {
+    function handlePhoneNumberChange(userName,ageInputValue,emailInputValue,password,inputCountryValue,inputCityValue,inputStreetValue) {
       const inputValue = document.getElementById("phoneNumber").value;
       const errorDisplayArea = document.querySelector(
         ".validate-phone-number-display-error-section"
       );
+   
       if (inputValue !== "") {
         const isValid = /^\+?[0-9()-\s]+$/.test(inputValue);
         if (!isValid) {
@@ -132,29 +158,77 @@ export default function RegistrationForm (){
           document.getElementById("phoneNumber").value = "";
         } else {
           errorDisplayArea.innerHTML = ``;
+          user.phone= inputValue;
+          posting()
         }
-      }
-    } 
+        }else{
+          posting()
+        }
+    }
 
     function handleSubmit (e) {
-        e.preventDefault();
-        handleNameChange();
-    };
+      e.preventDefault();
+      handleNameChange();
+  };
+
+
+  async function posting(){
+    try {
+      const response = await axios.post('http://localhost:6060/auth/signUp', user);
+      const errorDisplayArea = document.querySelector(
+        ".validate-name-display-error-section"
+      );
+      switch(response.data.message) {
+        case "the user already exist":
+          errorDisplayArea.innerHTML = `<div style="color:red; font-size: -small; font-weight: bold;">The user already exist</div>`;
+          break;
+        case 'error creating user':
+          errorDisplayArea.innerHTML = `<div style="color:red; font-size: -small; font-weight: bold;">Error creating user</div>`;
+          break;
+        case 'success':
+          errorDisplayArea.innerHTML = `<div style="color:green; font-size: -small; font-weight: bold;">Success</div>`;
+          break;
+        default:
+          console.error('Unexpected response status:', response.status);
+      }
+    } catch (error) {
+      setErrorBack(error.response.data.message)
+    }
+  }
+
+
 
     return (
       <div className="registration-form-container">
         <div className="registration-form">
           <h1>Registration</h1>
           <form>
+          {errorBack && <div className="validate-name-display-backend-error-section">{errorBack}</div>}
             <div className="validate-name-display-error-section"></div>
             <div className="name-section-registration-form">
               <div className="registration-form-group">
                 <label htmlFor="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" />
+                <input type="text" id="firstName" name="firstName"  />
               </div>
               <div className="registration-form-group">
                 <label htmlFor="lastName">Last Name</label>
                 <input type="text" id="lastName" name="lastName" />
+              </div>
+            </div>
+            <div className="age-gender-section-registration-form">
+              <div className="registration-form-group">
+                <label htmlFor="age" style={{display: "flex"}}>Age {" "}
+                    <div style={{ fontSize: "smaller", paddingLeft: "5px" ,paddingTop: "2px"}}>
+                      (optional)
+                    </div>
+                </label>
+                <input type="number" id="age" name="age" />
+              </div>
+              <div className="registration-form-group registration-form-group-gender">
+                <label htmlFor="gender">Gender</label>
+                <div className="gender-dropdown">
+                  <Dropdown selected={genderSelected} setSelected={setGenderSelected} />
+                </div>
               </div>
             </div>
             <div className="registration-form-group">

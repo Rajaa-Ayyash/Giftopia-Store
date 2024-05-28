@@ -14,6 +14,8 @@ import {
 
 
 import Home from './pages/home/Home.js';
+import CartShopping from './pages/cartShopping/CartShopping.js';
+import LoginFormPage from './pages/loginFormPage/LoginFormPage.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },{
+    path:"/cart",
+    element:<CartShopping/>
+  }
+  ,
+  {
+    path : '/login',
+    element : <LoginFormPage />,
   },
 ]);
 root.render(

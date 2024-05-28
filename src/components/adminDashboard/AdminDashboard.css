@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-.dashboard-forms{
+.dashboard-navigation-buttons{
     width: 50%;
     height: 50%;
     display: flex;
@@ -24,15 +24,7 @@
     border-radius: 50px;
 }
 
-.dashboard-forms form{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content:space-around;
-    border-radius: 50px;
-}
-
-.dashboard-forms input{
+.dashboard-navigation-buttons button{
     width:100%;
     font-size:xx-large;
     font-weight: bold;
@@ -42,14 +34,14 @@
     border: 0;
 }
 
-.dashboard-forms-first-row{
+.dashboard-first-row-of-buttons{
     width: 100%;
     height: 50%;
     display: flex;
     justify-content: space-between;
 }
 
-.dashboard-forms-second-row{
+.dashboard-second-row-of-buttons{
     width: 100%;
     height: 50%;
     display: flex;
@@ -57,28 +49,28 @@
 }
 
 
-.dashboard-admins-list-input:hover{
+.dashboard-admins-list-button:hover{
     border: 20px;
     border-color: #F5CAC3;
     border-style: solid;
     border-radius: 50px 0 0 0;
 }
 
-.dashboard-users-list-input:hover{
+.dashboard-users-list-button:hover{
     border: 20px;
     border-color: #F5CAC3;
     border-style: solid;
     border-radius: 0 50px  0 0;
 }
 
-.dashboard-products-input:hover{
+.dashboard-products-list-button:hover{
     border: 20px;
     border-color: #F5CAC3;
     border-style: solid;
     border-radius: 0 0 0 50px;
 }
 
-.dashboard-catagories-input:hover{
+.dashboard-catagories-list-button:hover{
     border: 20px;
     border-color: #F5CAC3;
     border-style: solid;

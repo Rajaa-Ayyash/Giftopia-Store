@@ -11,10 +11,10 @@ export default function ProductPrice ({ currentPrice, oldPrice }) {
     };
     return (
         <div className="product-price">
-            <div className="currentPrice">{currentPrice}</div>
-                {oldPrice > 0 && (
+            <div className="currentPrice">{currentPrice}$</div>
+                {oldPrice > currentPrice &&(
                     <div className="moreInfo">
-                        <div className="oldPrice">{oldPrice}</div>
+                        <div className="oldPrice">{oldPrice}$</div>
                         <div className="discount">
                             {discount(currentPrice, oldPrice)}% OFF
                         </div>

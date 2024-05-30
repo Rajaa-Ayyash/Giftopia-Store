@@ -1,5 +1,6 @@
-import './Intro.css';
+/*This code written by Reema Kusa*/
 
+import './Intro.css';
 
 const Intro =() => {
 

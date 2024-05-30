@@ -1,3 +1,4 @@
+/*This code written by Reema Kusa*/
 import React from 'react'
 import AboutUs from '../../components/aboutUs/AboutUs'
 

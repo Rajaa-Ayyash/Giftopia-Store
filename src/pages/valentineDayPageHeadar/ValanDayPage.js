@@ -1,4 +1,4 @@
-import ValentineDayHeader from "../../../components/occasionsHeadar/valentineDayPageHeader/ValentineDayHeadar";
+import ValentineDayHeader from "../../components/occasionsHeadar/valentineDayPageHeader/ValentineDayHeadar";
 
 export default function ValanDayPage (){
 

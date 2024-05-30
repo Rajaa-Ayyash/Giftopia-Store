@@ -1,3 +1,5 @@
+/*This code written by Reema Kusa*/
+
 import './MothersDayHeadar.css';
 import React, { useState } from 'react';
 import img1 from '../mothersDayPageHeader/mothersDayHeadarImg/m1-removebg-preview.png';

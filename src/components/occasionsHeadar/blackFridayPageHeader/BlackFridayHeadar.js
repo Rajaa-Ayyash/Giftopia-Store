@@ -1,3 +1,5 @@
+/*This code written by Reema Kusa*/
+
 import './BlackFridayHeadar.css';
 import React, { useState } from 'react';
 import img1 from '../blackFridayPageHeader/blackFridayHeadarImg/b1-removebg-preview.png';

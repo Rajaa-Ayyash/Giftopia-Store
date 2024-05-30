@@ -1,4 +1,4 @@
-import MothersDayHeadar from '../../../components/occasionsHeadar/mothersDayPageHeader/MothersDayHeadar'
+import MothersDayHeadar from '../../components/occasionsHeadar/mothersDayPageHeader/MothersDayHeadar'
 
 export default function MothersDayPage (){
 

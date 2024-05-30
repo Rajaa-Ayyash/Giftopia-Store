@@ -1,4 +1,4 @@
-import BlackFridayHeadar from '../../../components/occasionsHeadar/blackFridayPageHeader/BlackFridayHeadar'
+import BlackFridayHeadar from '../../components/occasionsHeadar/blackFridayPageHeader/BlackFridayHeadar'
 
 export default function BlackfridayPage (){
 

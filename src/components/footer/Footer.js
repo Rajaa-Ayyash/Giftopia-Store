@@ -1,6 +1,6 @@
+/*This code written by Reema kusa*/
 import React from "react";
 import '../footer/FooterD.css';
-
 
 
 const Footer = () => {

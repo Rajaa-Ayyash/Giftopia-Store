@@ -1,0 +1,131 @@
+.registration-form-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.registration-form {
+  border: 1px solid #D1D5DB;
+    border-radius: 5px;
+    padding: 2rem;
+    background-color: white;
+    width: 25em;
+  }
+  .registration-form h1{
+    text-align: center;
+  }  
+  .validate-name-display-error-section{
+    margin-top: 20px;
+  }
+
+  .validate-name-display-backend-error-section{
+    color:red;
+     font-size: -small;
+      font-weight: bold;
+  }
+
+  .registration-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .registration-form-group label{
+    color: #6B7280;
+  }
+  
+  .registration-form-group input,
+  .registration-form-group textarea,
+  .registration-form-group select {
+    color: #6B7280;
+    border: 1px solid #dddddd;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    font-size: 1rem;
+  }
+
+.name-section-registration-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.name-section-registration-form div{
+  max-width:48%;
+}
+
+.age-gender-section-registration-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.age-gender-section-registration-form div{
+  max-width:48%;
+}
+
+.validate-password-button{
+  background-color: transparent;
+  border: none;
+  color: #F28482;
+}
+
+
+.location-section-registration-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.location-section-registration-form div{
+  max-width:30.5%;
+}
+
+.location-section-registration-form label{
+  color: #6B7280;
+}
+
+.registration-form .save-button {
+    display: block;
+    margin: 10px auto auto auto ;
+}
+.registration-buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-to-login-button{
+  padding: 0px 10px;
+    font-weight: 500;
+    border: 2px solid #F5CAC3;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #F28482;
+}
+.back-to-login-button:hover{
+  padding: 0px 10px;
+    font-weight: 500;
+    border: 2px solid #F28482;
+    border-radius: 6px;
+    background-color: #F28482;
+    color: #fff;
+}
+
+.create-account-button {
+    padding: 0px 10px;
+    font-weight: 500;
+    border: 2px solid #F28482;
+    border-radius: 6px;
+    background-color: #F28482;
+    color: #fff;
+}
+.create-account-button:hover {
+    border: 2px solid #F5CAC3;
+    padding: 0px 10px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #F28482;
+}
+
+.gender-dropdown{
+  width: 160px;
+}

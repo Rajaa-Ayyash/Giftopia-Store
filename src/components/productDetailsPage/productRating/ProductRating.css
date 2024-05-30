@@ -1,0 +1,34 @@
+.product-rating{
+      margin: 10px 0;
+}
+.rating{
+      display: flex;
+      align-items: center;
+}
+
+.icon {
+      font-size: 14;
+      color: #F6BD60;
+}
+.rating div{
+      display: flex;
+      align-items: center;
+}
+.rating h4{
+      margin: 0;
+      padding: 7px 0 0 10px;
+      color: #191C1F;
+      font-size: 14px;
+      font-family: 'Public Sans', sans-serif;
+}
+.rating p{
+      margin: 0;
+
+      padding: 5px 0 0 10px;
+      align-self: center;
+      font-size: 14px;
+      font-family: 'Public Sans', sans-serif;
+}
+
+
+

@@ -1,5 +1,6 @@
-import Headar from '../../../components/headarHome/Headar.js'
+import Headar from '../../components/headarHome/Headar.js'
 
+/*This code written by Reema Kusa*/
 const HeadarPage =()=>{
 return(
 

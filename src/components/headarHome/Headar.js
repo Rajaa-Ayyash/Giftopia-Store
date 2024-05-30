@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './HeadarD.css';
 
-
+/*This code written by Reema Kusa*/
 const Slider = () => {
   const [active, setActive] = useState(0);
   const sliderItems = [

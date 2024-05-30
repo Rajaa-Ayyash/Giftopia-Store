@@ -1,29 +1,3 @@
-// import React, { useState } from 'react';
-// import './ProductCard.css'
-
-// export default function ProductCard(props) {
-
-
-//   return (
-//     <>
-//       {/* card */}
-      
-     
-
-
-
-
-
-
-
-
-
-
-//     </>
-
-//   )
-// }
-
 import React from 'react'
 import './productCard.css'
 
@@ -31,11 +5,10 @@ export default function ProductCard(props) {
   return (
 <div className='col-12 col-sm-6 col-md-4 col-lg-3  mt-5'>
       <div className="card">
-        {/* <img src="https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$" className="card-img-top product-image" alt="flowers" /> */}
         <img src={props.img} className="card-img-top product-image" alt="flowers" />
 
         <div className="card-body ">
-          <h5 className="card-title text-center">{props.name}</h5>
+          <h5 className="card-title text-center nameProduct">{props.name}</h5>
           <div className='d-flex justify-content-between'>
           {/* <button className="bg-warning border-0  mt-3 text-hite add-cart-btn ">
             
@@ -64,8 +37,8 @@ export default function ProductCard(props) {
             {/* <span className="price">$200</span> */}
             <div className='d-flex justify-content-between'>
               <div>
-                <span className="productPrice">{props.price}</span>
-                <span className="discount-price">$100</span>
+                <span className="productPrice">$100</span>
+                <span className="discount-price">{props.price}</span>
               </div>
               <p className="">
             <span className="stock">25104 in stock</span>

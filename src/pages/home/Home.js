@@ -1,9 +1,60 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import CategoriesSection from '../../components/categoresSection/CategoriesSection.js'
 import ProductCard from '../../sheare/productCard/ProductCard.js'
+import axios from 'axios';
+import Nav from '../../components/nav/Nav.js';
+import Category from '../../components/category3/Category.js';
 export default function Home() {
+
+  
+  const [valantines,setvalantines] = useState([]);
+  const [Birthday,setBirthday] = useState([]);
+  const [Product,setProduct] = useState([]);
+
+
+
+  useEffect(() => {
+    getValantine();
+    getBirthday();   
+    getProduct(); 
+}, []);
+
+const getValantine = async () => {
+  const response = await axios.get('http://localhost:6060/webProduct/getDataValantine');
+  setvalantines(response.data.message);
+
+};
+
+
+
+const getBirthday = async () => {
+  const response = await axios.get('http://localhost:6060/webProduct/getDataBirthday');
+  setBirthday(response.data.message);
+
+};
+
+const getProduct = async()=>{
+  const response = await axios.get('http://localhost:6060/product/getAllProducts')
+  console.log("ppp" ,response.data[1].mainImage['secure_url']);
+  setProduct(response.data);
+}
+
+
+
+
+
+
+
+
   return (
     // <ProductCard img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} />
+
+    <>
+    <Nav />
+    <Category />
+    
+
+
 
     
     <div className='container mt-5'>
@@ -74,7 +125,7 @@ export default function Home() {
 
 
     </div>
-    <div className='row' >
+    {/* <div className='row' >
      <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
       <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
       <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
@@ -85,21 +136,59 @@ export default function Home() {
       <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
 
 
+      </div> */}
+
+      <h2>Product</h2>
+      <div className='row' >
+      {Product.map(product => (
+                product.mainImage && product.mainImage.secure_url && (
+                    <ProductCard
+                        img={product.mainImage.secure_url}
+                        name={product.name}
+                        price={product.finalPrice}
+                        key={product._id}
+                    />
+                )
+            ))}
+
+
+      
+
+
       </div>
+
+      <h2>valantine</h2>
+      <div className='row' >
+        {valantines.filter(product =>product['PriceCategory'] == 'High').map((product)=>{
+            return <ProductCard img = {product['ImageURL']}  name = {product['Title']} price = {parseInt(product['Price'])}  key = {product._id} />
+        })}
+      </div>
+
+
+      <h2>Birthday</h2>
+      <div className='row' >
+        {Birthday.filter(product =>product['PriceCategory'] == 'High').map((product)=>{
+            return <ProductCard img = {product['ImageURL']}  name = {product['Title']} price = {parseInt(product['Price'])}  key = {product._id} />
+        })}
+      </div>
+
     </div>
 
 
-    // <>
+    {/* // <>
     // <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
     // <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
     // <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
-    // <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/>
+    // <ProductCard  img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} name={'game'} price = {50}/> */}
 
 
-    // </>
+    {/* // </> */}
     
 
-    // <CategoriesSection />
+    {/* // <CategoriesSection /> */}
+
+
+    </>
 
   )
 }

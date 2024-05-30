@@ -115,6 +115,7 @@ import axios from 'axios';
 import Category from '../category/Category.js';
 
 export default function CategorySection() {
+
   const [categories, setCategories] = useState([]);
   console.log(categories)
 
@@ -127,7 +128,7 @@ export default function CategorySection() {
     setCategories(response.data.message);
   };
 
-
+  
 
   return (
     <div className="container mt-5 mb-5">

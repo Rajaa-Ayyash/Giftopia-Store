@@ -1,73 +1,15 @@
-/* card css */
-.body{
-	background-color: #F5F5F5;
-}
-.card {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	width: 14.2rem;
-  }
-.product-image {
-    height: 180px; 
-    object-fit: contain; 
-  }
-
-.productPrice{
-	font-size: 1em;
-	color:#E74C3C;
-	text-decoration: line-through; 
-}
-.discount-price {
-    font-size: 1em; 
-    color: #2ECC71;
-  }
-.stock {
-    color: #3498DB; 
-  }
-.star-rating .bi {
-    color: #FFD700; 
-  }
-
-.add-cart-btn{
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-	padding: 0;
-}
-.stock{
-	font-size:11px;
-	color: darkgray;
-}
-.nameProduct{
-	font-size: 0.7rem !important;
-}
-
-
-
-
-
-/*  */
-
-/* .parent{
-    width: 100vh;
-    height: 100vh;
-}
-
 .board {
-    margin-top: 5rem;
-    margin-left: 5rem;
 	font-family: "Dosis";
-	font-size: 2.2rem; 
+	font-size: 1.1rem; 
 	letter-spacing: .15em;
 	text-transform: uppercase;
 	line-height: 1.5;
 	text-shadow: 1px 1px #666, 3px 3px #000;
 	
-	width: 400px;
-	height: 500px;
+	width: 360px;
+	height: 480px;
 	padding: 20px;
-	overflow: hidden;
+	overflow: auto;
 	color: #fff;
 	border: 10px solid #eee;
 	
@@ -93,21 +35,25 @@ inset 0 0 5px #000;
 		width: 100vw;
 		height: 100vh;
 		left: 0;
-		top: calc(50%);
+		/* top: calc(50% + 100px); */
 		z-index: -1;
 		box-shadow:  0 -2px 3px rgba(#000, .1), inset 0 2px 2px rgba(#000, .15), inset 0 10px 300px rgba(#000, .5);
 		background: #d1a776 url(data:image/png;base64,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) center / 5000px 100px; 
-	}
-	
-	&:before {
+        position: fixed;
+    }
 
+
+	
+	/* // The plant */
+	&:before {
 		content: '';
 		position: absolute;
 		background: url('https://img.teleflora.com/images/o_0/l_flowers:TPL08-1A,pg_6/w_272,h_340,cs_no_cmyk,c_pad,g_south/f_auto,q_auto:eco,e_sharpen:200/flowers/TPL08-1A/Teleflora&#039;sLushLeavesPothosPlant') center / contain no-repeat;
+
 		width: 250px;
 		height: 300px;
 		left: calc(50% - 370px);
-		top: calc(80vh - 30px);
+		top: calc(50vh - 30px);
 		filter: drop-shadow(20px 10px 20px rgba(0,0,0,.3));
 	}
 	
@@ -117,57 +63,18 @@ inset 0 0 5px #000;
 	}
 }
 
-body {
-	background: #666;
+.centerContainer {
+	background: #ffd43b;
+    background-image: url(../../..//public/img/wall7.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
-	overflow: hidden;
+    width: 100vw; /* 100% من عرض نافذة العرض */
+    height: 80vh; /* 100% من ارتفاع نافذة العرض */
+    overflow: hidden;
+  
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
- */
-
-
-
-
- 
-.cc{
-	width: 30px;
-	height: 24px;
-	background-color: #FFD700;
-	text-align: center;
-}
-
- @media screen and (max-width:206px){
-	.card {
-		width: 10rem !important;
-		margin: 0 auto;
-	  }
-}
-
-@media screen and (min-width:206px) and (max-width:270px){
-	.card {
-		width: 10rem !important;
-		margin: 0 auto;
-	  }
-}
-
-@media screen and (min-width:270px) and (max-width:575px){
-
-	.card {
-		width: 16rem !important;
-		margin: 0 auto;
-	  }
-
-
-}
-@media screen and (min-width:769px) and (max-width : 992px) {
-	/* .card{
-		width: 12rem !important;
-	}
- */
-
-}
-

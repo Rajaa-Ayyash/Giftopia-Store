@@ -1,6 +1,7 @@
 import React, { useState ,useEffect }from "react";
 import "./CartPage.css";
 import "./AnimatedButton.css";
+
 import AnimatedTruckButton from "./AnimatedButton.js";
 import { MdDelete } from "react-icons/md";
 import cookies from 'cookie-universal';

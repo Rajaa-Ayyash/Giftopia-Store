@@ -20,6 +20,8 @@ import UsersManagementPage from './pages/UsersManagementPage/UsersManagementPage
 
 import CartShopping from './pages/cartShopping/CartShopping.js';
 import LoginFormPage from './pages/loginFormPage/LoginFormPage.js';
+import AdminDashboard from './components/adminDashboard/AdminDashboard.js';
+import ProductMangmantPage from './pages/productMangmantPage/ProductMangmantPage.js';
 import SearshAiPage from './components/searshAi/SearshAiPage.js';
 import Products from './components/products/Products.js';
 import ProductDetails from './components/productDetailsPage/ProductDetails.js';
@@ -37,14 +39,26 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
-  },{
-    path:"/cart",
-    element:<CartShopping/>
-  }
-  ,
+  },
   {
-    path : '/login',
-    element : <LoginFormPage />,
+    path: "/cart",
+    element: <CartShopping />
+  },
+  {
+    path: "/login",
+    element: <LoginFormPage />,
+  },
+  {
+    path: "/productmangmantpage",
+    element: <ProductMangmantPage />,
+  },
+  {
+    path: "/daspord",
+    element: <AdminDashboard />,
+  },
+  {
+    path : '/SearshAiPage',
+    element : <SearshAiPage />
   },
   {
     path : '/SearshAiPage',
@@ -71,6 +85,7 @@ const router = createBrowserRouter([
     element : <RecumentideProduct />
   }
 ]);
+
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

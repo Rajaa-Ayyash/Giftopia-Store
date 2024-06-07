@@ -12,7 +12,7 @@ export default function AdminDashboard() {
                         <button  onClick={() => navigate('/users')} className='dashboard-users-list-button'>Users</button>
                     </div>
                     <div className='dashboard-second-row-of-buttons'>
-                        <button  onClick={() => navigate('/products')} className='dashboard-products-list-button'>Products</button>
+                        <button  onClick={() => navigate('/productmangmantpage')} className='dashboard-products-list-button'>Products</button>
                         <button  onClick={() => navigate('/catagories')} className='dashboard-catagories-list-button'>Catagories</button>
                     </div>
             </div>

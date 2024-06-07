@@ -17,6 +17,7 @@ import Home from './pages/home/Home.js';
 import CartShopping from './pages/cartShopping/CartShopping.js';
 import LoginFormPage from './pages/loginFormPage/LoginFormPage.js';
 import AdminDashboard from './components/adminDashboard/AdminDashboard.js';
+import ProductMangmantPage from './pages/productMangmantPage/ProductMangmantPage.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -27,21 +28,25 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
-  },{
-    path:"/cart",
-    element:<CartShopping/>
-  }
-  ,
-  {
-    path : '/login',
-    element : <LoginFormPage />,
   },
   {
-    path : '/daspord',
-    element : <AdminDashboard />,
-
+    path: "/cart",
+    element: <CartShopping />
+  },
+  {
+    path: "/login",
+    element: <LoginFormPage />,
+  },
+  {
+    path: "/productmangmantpage",
+    element: <ProductMangmantPage />,
+  },
+  {
+    path: "/daspord",
+    element: <AdminDashboard />,
   }
 ]);
+
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

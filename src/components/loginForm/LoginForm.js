@@ -3,7 +3,6 @@ import './LoginForm.css';
 import axios from 'axios';
 import Cookie from 'cookie-universal'
 import { redirect } from "react-router-dom";
-
 export default function LoginForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
@@ -11,23 +10,14 @@ export default function LoginForm() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [generalError, setGeneralError] = useState('');
-
-
-  //cookies 
+  //cookies
   const cookie = Cookie();
-
-
-
-
-
   const passwordToggleVisibility = () => {
     setPasswordVisible(prevVisible => !prevVisible);
   };
-
   const validateEmail = (email) => {
     return /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email);
   };
-
   const handleEmailChange = (e) => {
     const inputValue = e.target.value;
     setEmail(inputValue);
@@ -39,7 +29,6 @@ export default function LoginForm() {
       setEmailError('');
     }
   };
-
   const handlePasswordChange = (e) => {
     const inputValue = e.target.value;
     setPassword(inputValue);
@@ -49,7 +38,6 @@ export default function LoginForm() {
       setPasswordError('');
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email && validateEmail(email) && password) {
@@ -74,9 +62,7 @@ export default function LoginForm() {
             }
             else if (response.data.role == 'GeneralUser'){
               window.location.pathname = '/home'
-
             }
-
             break;
           default:
             setGeneralError("Unexpected response");
@@ -91,7 +77,6 @@ export default function LoginForm() {
       if (!password) setPasswordError("Password can't be empty");
     }
   };
-
   return (
     <div className="registration-form-container">
       <div className="registration-form">

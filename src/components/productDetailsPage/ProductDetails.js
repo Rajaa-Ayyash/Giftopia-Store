@@ -1,66 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductDetails.css"
-import ProductImages from "./productImages/ProductImages";
+import ProductImages from "../productDetailsPage/productImages/ProductImages"
 import ProductRating from "./productRating/ProductRating";
 import ProductPrice from "./productPrice/ProductPrice";
 import DescriptionReviewComponent from "./descriptionReviewComponent/DescriptionReviewComponent";
 import ProductPurchaseButtons from "./productPurchaseButtons/ProductPurchaseButtons";
+import axios from 'axios';
+import Cookie from 'cookie-universal'
 
-export default function ProductDetails(){
-    const images = [
-        { url: "img/ProductImages/mainImage.jpg", filename: "m.jpg" },
-        { url: "img/ProductImages/sub1.jpg", filename: "s1.jpg" },
-        { url: "img/ProductImages/sub2.jpg", filename: "s2.jpg" },
-        { url: "img/ProductImages/sub3.jpg", filename: "s3.jpg" },
-    ];
 
-    const name ='LG C2 42 (106cm) 4K Smart OLED evo TV | WebOS | Cinema HDR';
-    const rating=[4.7,21671];
-    const stock = 10;
-    const availabilityClass = { fontWeight: 'bold', color: stock > 0 ? '#2DB224' : '#FF0A0A'}
-    const company = 'LG';
-    const price = {currentPrice: '1699', oldPrice: '1999' };
-    const description =`The LG C2 42 (106cm) 4K Smart OLED evo TV is the best all-around OLED TV we've
-tested. Although all OLEDs deliver similar fantastic picture quality, this one stands out
-for its value because it has many gaming-oriented features that are great for gamers.
 
-Only 65G2 is shown in the image for example purposes. All 2022 LG OLED models feature eco-friendly packaging.
-65C2 Stand model is at a minimum 39% lighter than the C1 series.
-The 'Reducing CO2' footprint label applies to 65C2 only. All other C2 models feature a 'CO2 Measured' label.
-UL ECV certification based on TV frame and back cover. Percentage of recycled content varies by model and size.`;
+export default function ProductDetails({productID}){
+    const [productId, setProductId]=useState(productID);
+    const [product, setProduct] = useState('')
+    const [errorBack,setErrorBack]=useState('');
+    const cookie = Cookie();
+    const authToken = cookie.get('GiftopiaToken');
+    const availabilityClass = { fontWeight: 'bold', color: product.stock > 0 ? '#2DB224' : '#FF0A0A'}
+
+useEffect(() => {
+    getProductById();
+  }, [productId]);
+
+async function getProductById(){
+    try {
+        const response = await axios.get(`http://localhost:6060/product/${productId}`,{
+            headers: {
+              Authorization: authToken
+            },
+          });
+        setProduct(response.data.message);
+      } catch (error) {
+        setErrorBack(error.response.data.message)
+      }
+}
 
     return (
         <div className="main-container">
             <div className="product-page-nav-bar">
-                <h1 className="brand-name">Giftopia</h1>
+                
             </div>
             <div className="product-page-body">
                 <div className="product-details">
-                    <div className="product-review">
-                        <ProductImages images={images}></ProductImages>
-                    </div>
-                    <div className="product-content">
-                        <ProductRating rating={rating[0]} feedbacksNumber={rating[1]} />
-                        <div className="product-title">{name}</div>
-                        <div className="product-content-info">
-                            <div>
-                                Available: <span style={availabilityClass}>{stock > 0 ? 'In Stock' : 'Not Available'}</span>
-                            </div>
-                            <div>
-                                Brand :<span style={{fontWeight: 'bold' , color:"#111"}}> {company} </span>
-                            </div>
+                        <div className="product-review">
+                            <ProductImages mainImage={product.mainImage} subImages={product.subImages}></ProductImages>
                         </div>
-                        <div className="product-content-price">
-                            <ProductPrice currentPrice={price.currentPrice} oldPrice={price.oldPrice}/>
+                        <div className="product-content">
+                            
+                            <div className="product-title">{product.name}</div>
+                            <div className="product-content-info">
+                                <div>
+                                    Available: <span style={availabilityClass}>{product.stock > 0 ? 'In Stock' : 'Not Available'}</span>
+                                </div>
+                            </div>
+                            <div className="product-content-price">
+                                <ProductPrice currentPrice={product.finalPrice} oldPrice={product.price}/>
+                            </div>
+                            <ProductPurchaseButtons authToken={authToken} productId={productId} stock={product.stock}/>
                         </div>
-                        <ProductPurchaseButtons stock={stock}/>
-                    </div>
                 </div>
                 <div className="product-information-reviews">
-                    <DescriptionReviewComponent description={description} reviews={'NULL'}/>
+                    <DescriptionReviewComponent description={product.description} reviews={'NULL'}/>
                 </div>
             </div>
         </div>
     );
 };
 
+
+//<ProductRating rating={rating[0]} feedbacksNumber={rating[1]} />
+/*
+<div>
+    Brand :<span style={{fontWeight: 'bold' , color:"#111"}}> {company} </span>
+</div>
+*/

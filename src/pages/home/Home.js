@@ -47,6 +47,7 @@ const getProduct = async()=>{
 
 
   return (
+    
     // <ProductCard img={"https://gmedia.playstation.com/is/image/SIEPDC/dualsense-controller-product-thumbnail-01-en-14sep21?$facebook$"} />
 
     <>

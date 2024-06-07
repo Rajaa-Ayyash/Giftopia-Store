@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './general.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -15,6 +16,8 @@ import {
 
 
 import Home from './pages/home/Home.js';
+import UsersManagementPage from './pages/UsersManagementPage/UsersManagementPage.js';
+
 import CartShopping from './pages/cartShopping/CartShopping.js';
 import LoginFormPage from './pages/loginFormPage/LoginFormPage.js';
 import AdminDashboard from './components/adminDashboard/AdminDashboard.js';
@@ -25,6 +28,7 @@ import ProductDetails from './components/productDetailsPage/ProductDetails.js';
 import ValantinePage from './pages/valantinePage/ValantinePage.js';
 import BirthdayBroduct from './components/birthdayProduct/BirthdayBroduct.js';
 import RecumentideProduct from './components/recumendidProduct/RecumentideProduct.js';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
@@ -57,8 +61,16 @@ const router = createBrowserRouter([
     element : <SearshAiPage />
   },
   {
+    path : '/SearshAiPage',
+    element : <SearshAiPage />
+  },
+  {
     path : '/Products',
     element : <ProductDetails/>
+  },
+  {
+    path:"/users",
+    element:<UsersManagementPage/>
   },
   {
     path : '/ValantineProduct',

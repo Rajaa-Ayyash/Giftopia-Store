@@ -1,14 +1,13 @@
-import React, { useState ,useEffect }from "react";
+import React, { useState, useEffect } from "react";
 import "./CartPage.css";
 import "./AnimatedButton.css";
-
 import AnimatedTruckButton from "./AnimatedButton.js";
 import { MdDelete } from "react-icons/md";
 import cookies from 'cookie-universal';
 import axios from "axios";
 
-
 function CartItem({
+  productId,
   imageUrl,
   title,
   description,
@@ -33,7 +32,7 @@ function CartItem({
             src={imageUrl}
             style={{ width: "100px", height: "auto" }}
             alt=""
-            className="mini-img mt-3 "
+            className="mini-img mt-3"
           />
         </div>
       </td>
@@ -41,7 +40,9 @@ function CartItem({
         <a href="#" className="cart-link fw-bold">
           {title}
         </a>
-        <p>{description}</p>
+        <p className="product-description">
+          {description.length > 20 ? description.substring(0, 20) + '...' : description}
+        </p>
       </td>
       <td>
         <div className="quantity-btn-container">
@@ -59,7 +60,7 @@ function CartItem({
           </button>
         </div>
         <div className="remove-btn-container">
-          <div onClick={() => onRemoveItem(title)}>
+          <div onClick={() => onRemoveItem(productId)}>
             <MdDelete />
           </div>
         </div>
@@ -72,52 +73,80 @@ function CartItem({
 }
 
 function CartPage() {
-  const [cartItems, setCartItems] = useState([
-    {
-      imageUrl: "img/cartImg/gift2.webp",
-      title: "Breathing otter",
-      description: "Musical otter plush sound machine with “breathing” motion ",
-      price: 100.0,
-      quantity: 1,
-    },
-    {
-      imageUrl: "img/cartImg/gift3.jpg",
-      title: "Bright moon",
-      description: "Diameter 18 cm  - Distinctive lighting 16 RGB colors",
-      price: 50.0,
-      quantity: 1,
-    },
-    {
-      imageUrl: "img/cartImg/gift1.jpeg",
-      title: "Iphone 12 pro max",
-      description: "128GB - Graphite (Unlocked)",
-      price: 1000.0,
-      quantity: 1,
-    },
-    {
-      imageUrl: "img/cartImg/gift4.webp",
-      title: "Photo stand",
-      description: "7inch (13x18cm)",
-      price: 350.0,
-      quantity: 1,
-    },
-  ]);
-
+  const [cartItems, setCartItems] = useState([]);
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0.0);
+
+  const myCookies = cookies();
+  const token = myCookies.get('GiftopiaToken');
+  const x = `Giftopia__${token}`;
+
+  const removeProductFromCart = async (productId) => {
+    try {
+      await axios.put(
+        `http://localhost:6060/cart/${productId}`,
+        {},
+        {
+          headers: {
+            'Authorization': x,
+          },
+        }
+      );
+      setCartItems((currentItems) => currentItems.filter(item => item.message._id !== productId));
+    } catch (error) {
+      console.error('Error removing product from cart:', error);
+    }
+  };
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await axios.get('http://localhost:6060/cart', {
+          headers: {
+            'Authorization': x,
+          },
+        });
+
+        const cartItems = response.data.product;
+
+        const detailedCartItems = [];
+
+        for (const item of cartItems) {
+          try {
+            const productResponse = await axios.get(`http://localhost:6060/product/${item.productId}`, {
+              headers: {
+                'Authorization': x,
+              },
+            });
+            const detailedItem = {
+              ...productResponse.data,
+              quantity: item.quantity,
+            };
+            detailedCartItems.push(detailedItem);
+          } catch (error) {
+            console.error(`Error fetching details for product ID ${item.productId}:`, error);
+          }
+        }
+
+        setCartItems(detailedCartItems);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
+
+    getProduct();
+  }, [token]);
 
   const handleQuantityChange = (title, newQuantity) => {
     setCartItems((currentItems) =>
       currentItems.map((item) =>
-        item.title === title ? { ...item, quantity: newQuantity } : item
+        item.message.name === title ? { ...item, quantity: newQuantity } : item
       )
     );
   };
 
-  const handleRemoveItem = (title) => {
-    setCartItems((currentItems) =>
-      currentItems.filter((item) => item.title !== title)
-    );
+  const handleRemoveItem = (productId) => {
+    removeProductFromCart(productId);
   };
 
   const handleDiscountCodeChange = (event) => {
@@ -126,8 +155,7 @@ function CartPage() {
 
   const applyDiscount = () => {
     if (discountCode === "Giftoo") {
-      const discountAmount = 20.0;
-      setDiscount(discountAmount);
+      setDiscount(20.0);
     } else {
       setDiscount(0.0);
     }
@@ -136,35 +164,13 @@ function CartPage() {
   const isCartEmpty = cartItems.length === 0;
   const shippingCost = 20.0;
   const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + item.message.finalPrice * item.quantity,
     0
   );
   const totalWithShipping = totalPrice + shippingCost - discount;
 
-  const myCookies = cookies();
-  const token = myCookies.get('GiftopiaToken'); // استبدل 'tokenName' بالاسم الفعلي للكوكي
-console.log(token)
-const [product,setProduct] =useState([]);
-useEffect(()=>{
-  getProduct();
-},[])
-
-const getProduct=async()=>{
-  const getProducts = await axios({
-    method: 'get', // أو 'post', 'put', 'delete' حسب الحاجة
-    url: 'http://localhost:6060/cart',
-    headers: {
-      Authorization: `Giftopia__ ${token}` // إضافة الـ token في الرأس
-    }
-  })
-  console.log(getProducts.data.message)
-  setProduct(getProducts.data.message)
-}
-
-
-
   return (
-    <div className="CartPage ">
+    <div className="CartPage mt-5 ">
       <div className="product-cart mt-10">
         <div className="container">
           <div className="row">
@@ -180,16 +186,19 @@ const getProduct=async()=>{
                 </thead>
                 <tbody>
                   {cartItems.map((item) => (
-                    <CartItem
-                      key={item.title}
-                      imageUrl={item.imageUrl}
-                      title={item.title}
-                      description={item.description}
-                      price={item.price}
-                      quantity={item.quantity}
-                      onQuantityChange={handleQuantityChange}
-                      onRemoveItem={handleRemoveItem}
-                    />
+                    item.message.mainImage && item.message.mainImage.secure_url && (
+                      <CartItem
+                        key={item.message._id}
+                        productId={item.message._id}
+                        imageUrl={item.message.mainImage.secure_url}
+                        title={item.message.name}
+                        description={item.message.description}
+                        price={item.message.finalPrice}
+                        quantity={item.quantity}
+                        onQuantityChange={handleQuantityChange}
+                        onRemoveItem={handleRemoveItem}
+                      />
+                    )
                   ))}
                 </tbody>
               </table>
@@ -220,10 +229,7 @@ const getProduct=async()=>{
                     autoComplete="off"
                   />
 
-                  <button
-                    className="Apply-discount-btn"
-                    onClick={applyDiscount}
-                  >
+                  <button className="Apply-discount-btn" onClick={applyDiscount}>
                     Apply
                   </button>
                 </div>

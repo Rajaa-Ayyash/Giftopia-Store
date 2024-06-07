@@ -116,7 +116,7 @@ function AnimatedTruckButton() {
       onClick={handleButtonClick}
       ref={buttonRef}
     >
-      <span className="default fw-bold">Complete Order</span>
+      <span className="default fw-bold CompleateBtn">Complete Order</span>
       <span className="success fw-bold">Order Placed</span>
       <div className="truck" ref={truckRef}>
         <div className="wheel"></div>

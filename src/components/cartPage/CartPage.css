@@ -1,5 +1,5 @@
 .product-cart {
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .button-cart {
@@ -47,6 +47,10 @@
   color: #000000;
 }
 
+.product-description {
+  font-size: 12px;
+}
+
 .discount-code-container {
   margin-bottom: 10px;
 }
@@ -64,6 +68,7 @@
   border-radius: 5px;
   color: white;
 }
+
 .discount-input {
   color: #f28482;
   border: 2px solid #f28482;
@@ -72,9 +77,11 @@
   border-radius: 15px;
   max-width: 155px;
 }
+
 .discount-input:hover {
   box-shadow: 2px 2px 15px #f28482 inset;
 }
+
 .product-cart {
   display: flex;
   justify-content: space-between;

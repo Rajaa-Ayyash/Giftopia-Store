@@ -1,6 +1,6 @@
 .truck-button {
   --color: #fff;
-  --background: #f28482;
+  --background: #ffd43b;
   --tick: #16bf78;
   --base: #0d0f18;
   --wheel: #2b3044;
@@ -28,7 +28,7 @@
   color: var(--color);
   background: var(--background);
   border-radius: var(--br, 5px);
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   -webkit-tap-highlight-color: transparent;
   transform-style: preserve-3d;
   transform: rotateX(var(--rx, 0deg)) translateZ(0);
@@ -301,4 +301,7 @@ html {
 
 .truck-button.animation.done .success {
   opacity: 1;
+}
+.CompleateBtn{
+  background-color: red !important;
 }
